@@ -4,52 +4,52 @@
          --container-all-width: 1170px;
          --padding-left-right: 20px;
          --container-width: calc(var(--container-all-width) - var(--padding-left-right)*2);
-         --column-one: calc(var(--container-width)/ 11);
-         --half-column: calc(var(--column-one)/2);
+         --one-column: calc(var(--container-width)/ 11);
+         --half-column: calc(var(--one-column)/2);
      }
      
      .col-1 {
-         width: calc(var(--column-one));
+         width: calc(var(--one-column));
      }
      
      .col-2 {
-         width: calc(var(--column-one) * 2);
+         width: calc(var(--one-column) * 2);
      }
      
      .col-3 {
-         width: calc(var(--column-one) * 3);
+         width: calc(var(--one-column) * 3);
      }
      
      .col-4 {
-         width: calc(var(--column-one) * 4);
+         width: calc(var(--one-column) * 4);
      }
      
      .col-5 {
-         width: calc(var(--column-one) * 5);
+         width: calc(var(--one-column) * 5);
      }
      
      .col-6 {
-         width: calc(var(--column-one) * 6);
+         width: calc(var(--one-column) * 6);
      }
      
      .col-7 {
-         width: calc(var(--column-one) * 7);
+         width: calc(var(--one-column) * 7);
      }
      
      .col-8 {
-         width: calc(var(--column-one) * 8);
+         width: calc(var(--one-column) * 8);
      }
      
      .col-9 {
-         width: calc(var(--column-one) * 9);
+         width: calc(var(--one-column) * 9);
      }
      
      .col-10 {
-         width: calc(var(--column-one) * 10);
+         width: calc(var(--one-column) * 10);
      }
      
      .col-11 {
-         width: calc(var(--column-one) * 11);
+         width: calc(var(--one-column) * 11);
      }
      
      .col-12 {
@@ -62,23 +62,58 @@
          justify-content: center;
      }
      
+     .flex-horiz-center {
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center;
+     }
+     
      .text-left {
          text-align: left
+     }
+     
+     .text-center {
+         text-align: center
      }
      
      .block-to-center {
          margin: 0 auto;
      }
      
-     .grey-back {
-         background-color: #F3F3F3;
+     .brown-back {
+         background-color: #826A5B;
+     }
+     
+     .color-white {
+         color: white;
+     }
+     
+     .line-height-0 {
+         line-height: 0;
+     }
+     
+     .transparent-button {
+         cursor: pointer;
+         outline: none;
+         padding: 0;
+         border: none;
+         background: transparent
+     }
+     
+     .hide {
+         display: none
      }
      
      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+     * {
+         font-family: 'Roboto', sans-serif;
+     }
+     
      body {
          width: var(--container-all-width);
          margin: 0 auto;
-         font-family: 'Roboto', sans-serif;
+         background-color: #F3F3F3;
      }
      
      img {

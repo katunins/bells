@@ -1,4 +1,4 @@
-<div class="header grey-back">
+<div class="header">
     <div class="logo col-2">
         <img src="images/logo.svg" alt="">
     </div>
