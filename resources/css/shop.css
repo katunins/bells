@@ -1,0 +1,104 @@
+.shop {
+    /* width: 100%; */
+    padding: 50px 40px;
+}
+
+.shop button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #939191;
+    font-size: 14px;
+}
+
+.shop-search {
+    width: 500px;
+    height: 48px;
+    font-size: 16px;
+    padding: 20px;
+    background-color: rgba(196, 196, 196, 0.3);
+    border: none;
+    border-radius: 5px;
+    background-image: url(/images/magnifier.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-position-x: 460px;
+    background-size: 20px;
+    outline: none;
+}
+
+
+/* --------------- */
+
+.main-shop-block {
+    display: flex;
+}
+
+.filter-group {
+    margin-bottom: 30px;
+}
+
+.filter-group>ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter-group button {
+    padding: 0;
+}
+
+.filter-group>p {
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    color: #444343;
+}
+
+.active-filter-button::before {
+    content: "✓";
+    margin: 0 3px 0 -14px;
+    font-size: 13px;
+}
+
+
+/* ------------- */
+
+.footer-shop-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button.active-pagination {
+    background: #CCCBCB;
+    width: 23px;
+    height: 23px;
+    border-radius: 3px;
+}
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {
+    display: inline;
+}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.pagination li a:hover:not(.active) {
+    background-color: #ddd;
+}

@@ -15,4 +15,5 @@ mix
     .js('resources/js/app.js', 'public/js')
     .styles(['resources/css/app.css'], 'public/css/app.css')
     .styles(['resources/css/header.css'], 'public/css/header.css')
+    .styles(['resources/css/shop.css'], 'public/css/shop.css')
     .styles(['resources/css/welcome.css'], 'public/css/welcome.css');

@@ -24,7 +24,7 @@ p {
 .arrow-down {
     width: 35px;
     /* height: 30px; */
-    margin: 25px auto;
+    margin: 10px auto 35px;
 }
 
 .todo-button {
@@ -121,4 +121,39 @@ p {
 
 .video-block img {
     margin-top: 30px;
+}
+
+.slider {
+    justify-content: space-between;
+    position: relative;
+    margin-top: 50px;
+    /* background-size: cover;
+    background-repeat: no-repeat; */
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+}
+
+.slider-buttons {
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.slider-buttons>button {
+    margin: 0 20px;
+}
+
+.slider-text {
+    position: relative;
+    left: 40px;
+    bottom: -440px;
+    font-size: 28px;
+    font-weight: 800;
 }

@@ -34,7 +34,7 @@
         <div class="best-bells-block col-6 flex-horiz-center">
             <div class="col-1 flex-horiz-center">
                 <button id="best-bells-left" class="transparent-button">
-                    <img src="images/arrow-right.svg" alt="">
+                    <img style="transform: rotate(180deg);" src="images/arrow-right.svg" alt="">
                 </button>
             </div>
             <div class="flex-vert-center">
@@ -94,7 +94,7 @@
                 </button>
             </div>
         </div>
-        <div class="video-block col-10 block-to-center">
+        <div class="video-block col-9 block-to-center">
 
             <div class="text-center color-white">
                 <h1>Как правильно выбрать колокол в подарок?</h1>
@@ -111,6 +111,26 @@
     <div class="block">
 
     </div>
+
+    <div class="block brown-back slider">
+        <div class="slide" style="background-image: url(images/slider/slide-1.jpg)">
+            <div class="slider-text col-6 color-white">
+                Подарок на юбилей 50 лет: Колокол - “Николай Чудотворец”
+                Подставка в комплекте. Вес - 1кг.
+            </div>
+        </div>
+        <div class="slider-buttons">
+            <button id="slider-left" class="transparent-button">
+                <img style="transform: rotate(180deg);" src="images/arrow-right.svg" alt="">
+            </button>
+            <button id="slider-right" class="transparent-button">
+                <img src="images/arrow-right.svg" alt="">
+            </button>
+        </div>
+    </div>
+
+    @include ('layouts.shop')
+
 
 </div>
 @endsection
