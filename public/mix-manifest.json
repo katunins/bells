@@ -1,6 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/general.js": "/js/general.js",
+    "/js/welcome.js": "/js/welcome.js",
     "/css/app.css": "/css/app.css",
+    "/css/admin.css": "/css/admin.css",
     "/css/header.css": "/css/header.css",
     "/css/shop.css": "/css/shop.css",
     "/css/welcome.css": "/css/welcome.css"

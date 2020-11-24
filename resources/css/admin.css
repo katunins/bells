@@ -1,0 +1,45 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+}
+
+.container {
+    width: 1100px;
+    display: flex;
+}
+
+.signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: calc(50vh - 150px);
+    background-color: grey;
+    padding: 30px 50px;
+    border-radius: 10px;
+    color: white;
+}
+
+.form-block input {
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    margin: 5px;
+}
+
+.signin-container button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 30px;
+    border: 0;
+    background-color: darkgrey;
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.signin-container .error {
+    color: yellow;
+}

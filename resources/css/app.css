@@ -6,6 +6,7 @@
          --container-width: calc(var(--container-all-width) - var(--padding-left-right)*2);
          --one-column: calc(var(--container-width)/ 11);
          --half-column: calc(var(--one-column)/2);
+         --transition: 0.3s;
      }
      
      .col-1 {
@@ -93,6 +94,11 @@
          line-height: 0;
      }
      
+     button:active {
+         opacity: .5;
+         transition: 0.5;
+     }
+     
      .transparent-button {
          cursor: pointer;
          outline: none;
@@ -104,8 +110,8 @@
      .hide {
          display: none
      }
+     /* @import url('https://fonts.googleapis.com/css2?family=Roboto:100;300;400;500;700;900&display=swap'); */
      
-     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
      * {
          font-family: 'Roboto', sans-serif;
      }

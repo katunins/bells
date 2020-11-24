@@ -3,6 +3,10 @@
 
 @section ('title', 'Русский колокол - литейная мастерская в Воронеже')
 
+@section('script')
+<script src="js/welcome.js"></script>
+@endsection
+
 @section('container')
 <div class="container">
 
@@ -33,63 +37,43 @@
     <div class="block brown-back flex-vert-center">
         <div class="best-bells-block col-6 flex-horiz-center">
             <div class="col-1 flex-horiz-center">
-                <button id="best-bells-left" class="transparent-button">
+                <button id="best-bells-left" class="transparent-button" onclick="shiftTopProducts(1)">
                     <img style="transform: rotate(180deg);" src="images/arrow-right.svg" alt="">
                 </button>
             </div>
+
             <div class="flex-vert-center">
-                <div class="flex-horiz-center">
-                    <div class="best-card">
-                        <div class="back-bell" style="background-image: url(images/test-bell.jpg)">
-                            <div class="name-price">
-                                <div class="name">Лики святых</div>
-                                <div class="price">5 990 р
-                                    <button class="transparent-button">
-                                        <img src="images/thin-arrow.svg" alt="">
-                                    </button>
+                <div id="best-cards-block" class="col-4">
+                    <div class="best-cards-container" style="left: 0">
+                        @foreach ($shop->topProducts as $item)
+                        <div class="best-card">
+                            <a href="{{ $item['link'] }}">
+                                <div class="back-bell" style="background-image: url({{ $item['image'] }})">
+                                    <div class="name-price">
+                                        <div class="name">{{ $item['name'] }}</div>
+                                        <div class="price">{{ number_format($item['price'], 0, "", " ") }} р
+                                            <img src="images/thin-arrow.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="weight">{{ $item['weight'] }}кг</div>
                                 </div>
-                            </div>
-                            <div class="weight">1 кг</div>
+                            </a>
                         </div>
-                    </div>
-
-                    <div class="best-card">
-                        <div class="back-bell" style="background-image: url(images/test-bell.jpg)">
-                            <div class="name-price">
-                                <div class="name">Лики святых</div>
-                                <div class="price">5 990 р
-                                    <button class="transparent-button">
-                                        <img src="images/thin-arrow.svg" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="weight">1 кг</div>
-                        </div>
-                    </div>
-
-                    <div class="best-card hide">
-                        <div class="back-bell" style="background-image: url(images/test-bell.jpg)">
-                            <div class="name-price">
-                                <div class="name">Лики святых</div>
-                                <div class="price">5 990 р
-                                    <button class="transparent-button">
-                                        <img src="images/thin-arrow.svg" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="weight">1 кг</div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-4">
+
                     <div class="col-3 block-to-center count-line">
                         <hr>
-                        <div class="line-elem" style="width: 80px; left: 20px"></div>
+                        <div class="line-elem" style="left: 0">
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-1 flex-horiz-center">
-                <button id="best-bells-right" class="transparent-button">
+                <button id="best-bells-right" class="transparent-button" onclick="shiftTopProducts(-1)">
                     <img src="images/arrow-right.svg" alt="">
                 </button>
             </div>
@@ -112,18 +96,27 @@
 
     </div>
 
-    <div class="block brown-back slider">
-        <div class="slide" style="background-image: url(images/slider/slide-1.jpg)">
-            <div class="slider-text col-6 color-white">
-                Подарок на юбилей 50 лет: Колокол - “Николай Чудотворец”
-                Подставка в комплекте. Вес - 1кг.
+    <div class="block brown-back" id="main-slider">
+        <div class="slide-line" style="left: 0">
+            <div class="slide" style="background-image: url(images/slider/slide-1.jpg)">
+                <div class="slider-text col-6 color-white">
+                    Подарок на юбилей 50 лет: Колокол - “Николай Чудотворец”
+                    Подставка в комплекте. Вес - 1кг.
+                </div>
+            </div>
+            <div class="slide" style="background-image: url(images/slider/slide-1.jpg)">
+                <div class="slider-text col-6 color-white">
+                    Подарок на юбилей 50 лет: Колокол - “Николай Чудотворец”
+                    Подставка в комплекте. Вес - 1кг.
+                </div>
             </div>
         </div>
         <div class="slider-buttons">
             <button id="slider-left" class="transparent-button">
-                <img style="transform: rotate(180deg);" src="images/arrow-right.svg" alt="">
+                <img style="transform: rotate(180deg);" src="images/arrow-right.svg" alt=""
+                    onclick="slideToShift ('main-slider', 1)">
             </button>
-            <button id="slider-right" class="transparent-button">
+            <button id="slider-right" class="transparent-button" onclick="slideToShift ('main-slider', -1)">
                 <img src="images/arrow-right.svg" alt="">
             </button>
         </div>
@@ -134,3 +127,50 @@
 
 </div>
 @endsection
+
+<script>
+    // Функция смещения слайдера
+    // главный div с фиксированной шириной
+    // внутри лента из элементов
+    // (parentElemID, , direction, )
+    function slideToShift (parentElemID, direction, step=1) {
+        let parentElem = document.getElementById(parentElemID)
+
+        let lineElem = parentElem.firstElementChild
+        let stepWidth = parentElem.clientWidth / step //если на экране 2 слайда и нужно сместить на 1 слайд
+        let leftStyle = lineElem.style.left ? parseFloat(lineElem.style.left) : 0
+
+        let slidersCount = lineElem.children.length
+        // let slideWidth = lineElem.children[0].clientWidth
+
+        let minLeft = -((slidersCount - step) * stepWidth)
+        let maxLeft = 0
+
+        let newLeft = leftStyle + direction * stepWidth
+
+        if (newLeft <= maxLeft && newLeft >= minLeft) {
+            lineElem.style.left = newLeft
+            return true
+        }
+
+    }
+
+    // Обработчик нажатия на кнопки вправо - влево в блоке популярной продукции
+    function shiftTopProducts(direction) {
+    if (slideToShift ('best-cards-block', direction, 2)) {
+        // если был шифт, то сдвинем нижнюю полоску 
+        let lineElem = document.querySelector('.line-elem')
+        let lineElemLeft = lineElem.style.left ? parseFloat(lineElem.style.left) : 0
+        let maxLenghtLineElem =document.querySelector('.count-line').clientWidth
+        lineElem.style.left = lineElemLeft - direction * lineElem.clientWidth   
+    }
+
+    }   
+
+    document.addEventListener ('DOMContentLoaded', function (){
+
+        let cardsCount = document.querySelectorAll('.best-card').length
+        let maxLenghtLineElem =document.querySelector('.count-line').clientWidth
+        document.querySelector ('.line-elem').style.width = parseFloat(maxLenghtLineElem)/(cardsCount-1)
+    })
+</script>

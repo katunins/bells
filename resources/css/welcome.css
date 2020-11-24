@@ -13,8 +13,7 @@
 }
 
 h1 {
-    font-weight: 100;
-    font-size: 29px;
+    font-size: 28px;
 }
 
 p {
@@ -45,8 +44,18 @@ p {
     height: auto;
 }
 
+#best-cards-block {
+    /* width: calc((var(--one-column)*2 - 5px)); */
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    overflow: hidden;
+    padding: 0 5px;
+}
+
 .best-card {
-    width: calc(var(--one-column)*2 - 5px);
+    min-width: calc(var(--one-column)*2 - 5px);
     height: calc(var(--one-column)*2*1.5 - 5px);
     background-color: white;
     border-radius: 8px;
@@ -57,6 +66,12 @@ p {
     margin-left: var(--half-column);
     position: relative;
     top: 210px;
+}
+
+.best-cards-container {
+    display: flex;
+    position: relative;
+    transition: var(--transition);
 }
 
 .back-bell {
@@ -71,12 +86,21 @@ p {
     justify-content: space-between;
 }
 
+.back-bell img {
+    margin-left: 5px;
+    width: 7px;
+}
+
 .name-price {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     margin: 0 0 20px 30px;
     font-size: 16px;
+}
+
+.name-price>.name {
+    font-weight: 500;
 }
 
 .weight {
@@ -112,6 +136,7 @@ p {
     border-radius: 20px;
     position: relative;
     top: -16px;
+    transition: var(--transition);
 }
 
 .video-block {
@@ -123,16 +148,25 @@ p {
     margin-top: 30px;
 }
 
-.slider {
+#main-slider {
     justify-content: space-between;
     position: relative;
     margin-top: 50px;
+    overflow: hidden;
     /* background-size: cover;
     background-repeat: no-repeat; */
 }
 
+.slide-line {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    transition: 0.7s;
+}
+
 .slide {
-    width: 100%;
+    /* width: 100%; */
+    width: var(--container-all-width);
     height: 100%;
 }
 

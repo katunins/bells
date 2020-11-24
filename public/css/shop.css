@@ -8,8 +8,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    color: #939191;
-    font-size: 14px;
+    color: #636363;
 }
 
 .shop-search {
@@ -31,12 +30,51 @@
 
 /* --------------- */
 
+.filter-block * {
+    font-size: 15px;
+}
+
+
+/* .filter-block {
+    margin-left: 16px;
+} */
+
 .main-shop-block {
     display: flex;
+    margin-top: 50px;
+    justify-content: space-between;
 }
 
 .filter-group {
     margin-bottom: 30px;
+}
+
+.clear-filter {
+    /* margin-top: 10px; */
+    padding: 0;
+}
+
+.filter-group>span {
+    border: 1px solid rgb(167, 167, 167);
+    margin-right: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.filter-group>span>input {
+    border: none;
+    width: 80px;
+    background: transparent;
+    outline: none;
+}
+
+.filter-group>span>input::after {
+    content: "₽";
+}
+
+.filter-group p {
+    font-weight: 600;
+    margin-top: 0;
 }
 
 .filter-group>ul {
@@ -45,20 +83,67 @@
     margin: 0;
 }
 
-.filter-group button {
-    padding: 0;
+.filter-group>ul>li {
+    margin-bottom: 3px;
 }
 
-.filter-group>p {
-    margin: 0 0 10px 0;
-    font-weight: 600;
-    color: #444343;
+.filter-group>ul>li input[type="checkbox"] {
+    display: none;
 }
 
-.active-filter-button::before {
-    content: "✓";
-    margin: 0 3px 0 -14px;
-    font-size: 13px;
+
+/* стили для метки */
+
+.filter-group>ul>li label {
+    color: #000;
+    cursor: default;
+    font-weight: normal;
+    line-height: 14px;
+    padding: 10px 0;
+    vertical-align: middle;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+
+/* формируем внешний вид чекбокса в псевдоэлементе before */
+
+.filter-group>ul>li label::before {
+    content: " ";
+    color: #424040;
+    display: inline-block;
+    /* font: 20px/30px Arial; */
+    margin-right: 8px;
+    position: relative;
+    text-align: center;
+    text-indent: 0px;
+    width: 14px;
+    height: 14px;
+    /* background: #FFF; */
+    border: 1px solid #b9b9b9;
+    border-image: initial;
+    vertical-align: middle;
+    border-radius: 4px;
+}
+
+
+/* вариации внешнего вида в зав-ти от статуса checkbox */
+
+
+/* checked */
+
+input:checked+label:before {
+    content: "✓" !important;
+}
+
+
+/* disabled */
+
+input:disabled+.filter-group>ul>li label::before {
+    background: #eee;
+    color: #aaa;
 }
 
 
@@ -71,7 +156,7 @@
 }
 
 button.active-pagination {
-    background: #CCCBCB;
+    background: #d6d6d6;
     width: 23px;
     height: 23px;
     border-radius: 3px;
@@ -101,4 +186,55 @@ ul.pagination li a.active {
 
 ul.pagination li a:hover:not(.active) {
     background-color: #ddd;
+}
+
+.goods-block {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background-color: white;
+    width: 250px;
+    height: 350px;
+    margin: 0 14px 20px 0;
+    border-radius: 7px;
+    filter: drop-shadow(3px 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.product-card>.back-img {
+    width: 70%;
+    height: 60%;
+    /* background-color: greenyellow; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    margin: 0 auto;
+}
+
+.description-block>.weight {
+    position: relative;
+    top: -320px;
+    width: 30px;
+    text-align: center;
+}
+
+.description-block {
+    width: 80%;
+    margin: 10px auto 0;
+}
+
+.description-block>.title {
+    font-weight: 600;
+}
+
+.description-block>.description {
+    font-size: 12px;
+    margin-top: 5px;
+    height: 55px;
+}
+
+.description-block>.price {
+    font-size: 20px;
 }
