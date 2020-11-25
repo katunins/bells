@@ -10,13 +10,21 @@
 </head>
 
 <body>
+    @if (Session::has('info'))
+    <div class="info">{{ Session::get('info') }}</div>
+    @endif
     <div class="signin-container">
-        <form action="setNewAdminPass" role="form" method="post">
-            @csrf
-            {{-- {{ dd($update) }} --}}
-            <h3>Установите пароль администратора</h3>
 
-            @if (isset($update))
+        <form action={{ $action }} role="form" method="post">
+            @csrf
+
+            @if ($action == 'setNewAdminPass')
+            <h3>Установите пароль администратора</h3>
+            @elseif ($action == 'signIn')
+            <h3>Введите пароль администратора</h3>
+            @endif
+
+            @if (isset($changePass))
             <div class="form-block">
                 @error ('password_old')
                 <div class="error">
@@ -25,17 +33,20 @@
                 @enderror
                 <input type="password" name="password_old" placeholder="Старый пароль">
             </div>
+            <br>
             @endif
 
-            <br>
+
             <div class="form-block">
                 @error ('password')
                 <div class="error">
                     {{ $message }}
                 </div>
                 @enderror
-                <input type="password" name="password" placeholder="Новый пароль">
+                <input type="password" name="password" placeholder="Пароль">
             </div>
+
+            @if ($action != 'signIn')
             <div class="form-block">
                 @error ('passwordcheck')
                 <div class="error">
@@ -44,10 +55,17 @@
                 @enderror
                 <input type="password" name="password_confirmation" placeholder="Повторите пароль">
             </div>
+            @endif
 
+            @if ($action == 'signIn')
+            <button type="submit">Войти</button>
+            @else
             <button type="submit">Сохранить</button>
+            @endif
         </form>
+
     </div>
+
 </body>
 
 </html>

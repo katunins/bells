@@ -16,6 +16,7 @@ mix
     .js('resources/js/welcome.js', 'public/js')
     .js('resources/js/general.js', 'public/js')
     .styles(['resources/css/app.css'], 'public/css/app.css')
+    .styles(['resources/css/wharehouse.css'], 'public/css/wharehouse.css')
     .styles(['resources/css/admin.css'], 'public/css/admin.css')
     .styles(['resources/css/header.css'], 'public/css/header.css')
     .styles(['resources/css/shop.css'], 'public/css/shop.css')

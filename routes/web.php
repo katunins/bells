@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WharehouseContoller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +28,30 @@ Route::post('getProductToPage', [ProductController::class, 'getProductToPage']);
 
 // админ
 Route::get('/admin', function () {
-    return AdminController::checkAuth ();
+    return AdminController::checkAuth();
 });
 
-Route::post('setNewAdminPass', [AdminController::class,'setNewAdminPass']);
+Route::post('setNewAdminPass', [AdminController::class, 'setNewAdminPass']);
+Route::post('signIn', [AdminController::class, 'signIn']);
+
+Route::get('/logOut', [AdminController::class, 'logOut']);
+Route::get('/changePass', [AdminController::class, 'changePass']);
+
+Route::get('/wharehouse', function () {
+    if (Auth::check()) {
+        return View('admin.wharehouse');
+    } else {
+        return redirect('/admin');
+    }
+});
+
+Route::post('/getWharehouse', [WharehouseContoller::class, 'getWharehouseScreen']);
+Route::post('/changeWharehousePage', [WharehouseContoller::class, 'changeWharehousePage']);
+
+Route::get('/newProduct', function () {
+    if (Auth::check()) {
+        return View('admin.newproduct');
+    } else {
+        return redirect('/admin');
+    }
+});

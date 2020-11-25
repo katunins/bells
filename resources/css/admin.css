@@ -3,10 +3,54 @@
     font-weight: normal;
 }
 
-.container {
-    width: 1100px;
-    display: flex;
+.info {
+    text-align: center;
+    margin-bottom: 30px;
 }
+
+.menu-block {
+    background-color: darkgray;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 60px;
+}
+
+.menu>* {
+    margin: 5px;
+}
+
+.menu>li>h3 {
+    margin: 0 20px;
+}
+
+.menu>li {
+    list-style: none;
+}
+
+.menu>li>a {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(75, 74, 74);
+    font-size: smaller;
+    height: 30px;
+    vertical-align: middle;
+    border-radius: 5px;
+    padding: 3px 15px;
+}
+
+.work-area {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+/* SignIn */
 
 .signin-container {
     display: flex;
@@ -20,6 +64,10 @@
     padding: 30px 50px;
     border-radius: 10px;
     color: white;
+}
+
+.signin-container * {
+    outline: none;
 }
 
 .form-block input {
@@ -36,10 +84,12 @@
     border: 0;
     background-color: darkgrey;
     color: white;
-    outline: none;
     cursor: pointer;
 }
 
 .signin-container .error {
     color: yellow;
 }
+
+
+/* SignIn */

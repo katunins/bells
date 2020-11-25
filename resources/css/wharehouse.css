@@ -1,0 +1,103 @@
+.table {
+    /* width: 100%; */
+    margin: 10px;
+    /* background-color: turquoise; */
+}
+
+.table li {
+    list-style: none;
+    /* padding: 10px; */
+}
+
+.table-filter {
+    height: 30px;
+    /* text-align: center; */
+    margin: 20px;
+    margin-left: 0;
+}
+
+.table-filter>#filterTitle {
+    width: 300px;
+    height: 100%;
+    text-align: center;
+}
+
+.table-filter>button {
+    height: 100%;
+}
+
+.table-head,
+.table-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid gainsboro;
+    padding: 5px 0;
+}
+
+.table-head>li {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* ширина столбцов */
+
+.id-col {
+    width: 10%;
+}
+
+.code-col {
+    width: 10%;
+}
+
+.title-col {
+    width: 20%;
+}
+
+.description-col {
+    width: 30%;
+}
+
+.price-col {
+    width: 10%;
+}
+
+.weight-col {
+    width: 10%;
+}
+
+.images-col {
+    width: 20%;
+}
+
+
+/* ширина столбцов */
+
+.table-item>li {
+    font-size: 13px;
+}
+
+.table-item>li>img {
+    width: 100px;
+    border: 1px solid gainsboro;
+}
+
+.pagination {
+    display: flex;
+    padding: 0;
+}
+
+.pagination>li {
+    margin: 2px;
+}
+
+.pagination>li>button {
+    border: 1px solid rgba(128, 128, 128, 0.404);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.active-pagination {
+    background-color: darkgrey;
+}
