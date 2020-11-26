@@ -34,21 +34,26 @@
             tableBody.innerHTML =''
         if (data.length > 0) {
             
-            
-
             data.forEach(item => {
-
                 let tableItem = document.createElement('div')
                 tableItem.className = 'table-item'
-
-                let images = ''
-                item.images.forEach (image=>{
-                    images += '<img src="'+image+'" alt="">'
+                let indexArr = 0 //индекс в массиве изображений для галереи в модальном окне
+                let arrayImagePaths = [item.images.firstImage]
+                let images = '<button class="image-button first-image" style="background-image: url('+item.images.firstImage+')" onclick="openImage({id:'+item.id+', imagePath:`'+item.images.firstImage+'`, index:'+indexArr+'})"></button>' //{id:'+item.id', imagePath:'+item.images.firstImage+'}
+                item.images.imagesPaths.forEach (image=>{
+                    indexArr ++
+                    arrayImagePaths.push(image)
+                    images += '<button class="image-button" style="background-image: url('+image+')" onclick="openImage({id:'+item.id+', imagePath:`'+image+'`, index:'+indexArr+'})")></button>'
                 })
+                let arrayImagesInput = document.createElement ('input')
+                arrayImagesInput.type = 'hidden'
+                arrayImagesInput.name = 'imagesOfProduct_'+item.id
+                arrayImagesInput.value = JSON.stringify (arrayImagePaths)
+                
                 let imagesCol = document.createElement('li')
                 imagesCol.className = 'images-col'
                 imagesCol.innerHTML= images
-                
+
 
                 let weightCol = document.createElement('li')
                 weightCol.className = 'weight-col'
@@ -76,6 +81,7 @@
                 tableItem.appendChild(priceCol)
                 tableItem.appendChild(weightCol)
                 tableItem.appendChild(imagesCol)
+                tableItem.appendChild(arrayImagesInput)
 
                 tableBody.appendChild(tableItem)
                 
@@ -87,7 +93,7 @@
     //             currentPage:result.currentPage, 
     //             pageQuantity:result.pageQuantity
     function renderPagination (data) {
-
+        if (data.pageQuantity <=1 )return
         let buttonsHtml =''
         for (let index = 1; index <= data.pageQuantity; index++) {
             buttonsHtml +='<li><button '
@@ -141,8 +147,15 @@
         buildScreen (1, false, titleFilter)
     }
 
+    // нажата картинка
+    function openImage (data) {
+        let imageArrays = document.querySelector('input[name="imagesOfProduct_'+data.id+'"]').value
+        turnONmodalGallery (JSON.parse (imageArrays))
+        // turnONmodalImage(data.imagePath)
+        turnONmodal()
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         buildScreen (1)
-        // document.getElementById('filterTitle').onchange = newSearch
     })
 </script>

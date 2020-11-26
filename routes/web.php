@@ -55,3 +55,5 @@ Route::get('/newProduct', function () {
         return redirect('/admin');
     }
 });
+
+Route::post('getNewProduct', [WharehouseContoller::class, 'getNewProduct']);

@@ -3,6 +3,14 @@
     font-weight: normal;
 }
 
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    opacity: 0.4 !important;
+}
+
 .info {
     text-align: center;
     margin-bottom: 30px;
@@ -46,6 +54,7 @@
 
 .work-area {
     width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 

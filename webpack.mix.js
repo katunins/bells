@@ -19,5 +19,7 @@ mix
     .styles(['resources/css/wharehouse.css'], 'public/css/wharehouse.css')
     .styles(['resources/css/admin.css'], 'public/css/admin.css')
     .styles(['resources/css/header.css'], 'public/css/header.css')
+    .styles(['resources/css/supermodal.css'], 'public/css/supermodal.css')
     .styles(['resources/css/shop.css'], 'public/css/shop.css')
+    .styles(['resources/css/newproduct.css'], 'public/css/newproduct.css')
     .styles(['resources/css/welcome.css'], 'public/css/welcome.css');

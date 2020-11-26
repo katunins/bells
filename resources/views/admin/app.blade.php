@@ -15,7 +15,9 @@
 </head>
 
 <body>
+    
     <div class="container">
+        @include('layouts.supermodal')
         <div class="menu-block">
             <div>
                 <h3>Кабинет администратора</h3>
