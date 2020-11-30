@@ -3,20 +3,19 @@
 @section('content')
 <div class="table">
     <div class="table-filter">
-        {{-- <input type="text" name="maxprice" id="maxprice" value="0">
-        <input type="text" name="minprice" id="minprice" value="10000000"> --}}
         <input type="text" name="filterTitle" id="filterTitle" placeholder="Поиск товара" oninput="newSearch()">
-        {{-- <button onclick="newSearch()">Найти</button> --}}
         <button onclick="newSearch(true)">Очистить</button>
     </div>
     <div class="table-head">
         <li class="id-col">id</li>
-        {{-- <li class="code-col">Код</li> --}}
         <li class="title-col">Название</li>
         <li class="description-col">Описание</li>
+        <li class="themesCol">Тематика</li>
         <li class="price-col">Цена</li>
         <li class="weight-col">Вес</li>
         <li class="images-col">Изображения</li>
+        <li class="quantity-col">Кол-во</li>
+        <li class="action-col"></li>
     </div>
     <div class="table-body">
     </div>
@@ -30,20 +29,34 @@
     // рендерит экран
     // принимает объект из товаров
     function renderPage (data) {
+
         let tableBody = document.querySelector('.table-body')
             tableBody.innerHTML =''
+
         if (data.length > 0) {
             
             data.forEach(item => {
                 let tableItem = document.createElement('div')
                 tableItem.className = 'table-item'
+                tableItem.setAttribute('productId', item.id)
+                
+                let actionButtons=document.createElement('li')
+                actionButtons.className='action-col'
+                actionButtons.innerHTML +='<button onclick="document.location='+"'newProduct/"+item.id+"'"+'">Изменить</button>'
+                actionButtons.innerHTML +='<button onclick="removeProduct('+item.id+')" style="color:red;">Удалить</button>'
+                actionButtons.innerHTML += '<div class="changeQuantityButtons">'
+                +'<button onclick="changeQuantity('+item.id+', -1)">-</button>'
+                +'<button onclick="changeQuantity('+item.id+', 1)">+</button>'
+                +'</div>'
+
                 let indexArr = 0 //индекс в массиве изображений для галереи в модальном окне
-                let arrayImagePaths = [item.images.firstImage]
-                let images = '<button class="image-button first-image" style="background-image: url('+item.images.firstImage+')" onclick="openImage({id:'+item.id+', imagePath:`'+item.images.firstImage+'`, index:'+indexArr+'})"></button>' //{id:'+item.id', imagePath:'+item.images.firstImage+'}
-                item.images.imagesPaths.forEach (image=>{
-                    indexArr ++
+                let arrayImagePaths = []
+                let images = ''
+                // let images = '<button class="image-button first-image" style="background-image: url('+item.images.firstImage+')" onclick="openImage({id:'+item.id+', indexArr:'+indexArr+'})"></button>'
+                item.images.forEach (image=>{
                     arrayImagePaths.push(image)
-                    images += '<button class="image-button" style="background-image: url('+image+')" onclick="openImage({id:'+item.id+', imagePath:`'+image+'`, index:'+indexArr+'})")></button>'
+                    images += '<button class="image-button" style="background-image: url('+image+')" onclick="openImage({id:'+item.id+', indexArr:'+indexArr+'})")></button>'
+                    indexArr ++
                 })
                 let arrayImagesInput = document.createElement ('input')
                 arrayImagesInput.type = 'hidden'
@@ -57,11 +70,19 @@
 
                 let weightCol = document.createElement('li')
                 weightCol.className = 'weight-col'
-                weightCol.innerHTML = item.weight+' кг'
+                weightCol.innerHTML = item.weight<1?item.weight*1000+' г.':item.weight+' кг'
 
                 let priceCol = document.createElement('li')
                 priceCol.className = 'price-col'
                 priceCol.innerHTML = item.price+' ₽'
+
+                let themesCol = document.createElement('li')
+                themesCol.className = 'themesCol'
+                let themesHTML = ''
+                item.themes.forEach(el=>{
+                    themesHTML +='<li>'+el+'</li>'
+                })
+                themesCol.innerHTML = themesHTML
 
                 let descriptionCol = document.createElement('li')
                 descriptionCol.className = 'description-col'
@@ -70,6 +91,11 @@
                 let titleCol = document.createElement('li')
                 titleCol.className = 'title-col'
                 titleCol.innerHTML = item.title
+
+                let quantityCol = document.createElement('li')
+                quantityCol.setAttribute('quantity', item.quantity)
+                quantityCol.className = 'quantity-col'
+                quantityCol.innerHTML = item.quantity+' шт.'
                 
                 let idCol = document.createElement('li')
                 idCol.className = 'id-col'
@@ -78,10 +104,18 @@
                 tableItem.appendChild(idCol)
                 tableItem.appendChild(titleCol)
                 tableItem.appendChild(descriptionCol)
+                tableItem.appendChild(themesCol)
                 tableItem.appendChild(priceCol)
                 tableItem.appendChild(weightCol)
                 tableItem.appendChild(imagesCol)
                 tableItem.appendChild(arrayImagesInput)
+
+                tableItem.appendChild(quantityCol)
+                tableItem.appendChild(actionButtons)
+
+                if (item.quantity == 0) {
+                    tableItem.querySelectorAll('li:not(.action-col)').forEach(el=>el.style='opacity: 0.3')
+                }
 
                 tableBody.appendChild(tableItem)
                 
@@ -124,15 +158,15 @@
 
     // получает экран товаров - page страницу
     // shift - нажата кнопка Следующая
-    function buildScreen (page, shift = false, titleFilter = '') {
+    function buildScreen (page, shift = false, filter = {title:'', themes:''}) {
         if (shift != false) page = Number (document.querySelector('.active-pagination').getAttribute('page')) + shift
         ajax ('getWharehouse', {
             page:page,
-            titleFilter: titleFilter
+            filter: filter
         }, function (result){
             // console.log (result)
-            renderPage (result.data)
-            renderPagination({
+                renderPage (result.data)
+                renderPagination({
                 currentPage:result.currentPage, 
                 pageQuantity:result.pageQuantity
             })
@@ -144,14 +178,58 @@
         let titleFilter = document.getElementById('filterTitle').value
         if (reset) titleFilter = ''
         
-        buildScreen (1, false, titleFilter)
+        buildScreen (1, false, {title:titleFilter})
     }
 
     // нажата картинка
+    // id товара
+    // index - позиция фотографии в массиве фотографий input name imagesOfProduct_id
     function openImage (data) {
         let imageArrays = document.querySelector('input[name="imagesOfProduct_'+data.id+'"]').value
-        turnONmodalGallery (JSON.parse (imageArrays))
-        // turnONmodalImage(data.imagePath)
+        turnONmodalGallery ({
+            imageArrays: JSON.parse (imageArrays),
+            productId: data.id,
+            indexArr: data.indexArr
+        })
+        turnONmodal()
+    }
+
+    function changeQuantity (id, shift) {
+        let productElem = document.querySelector('.table-item[productId="'+id+'"]')
+        let countElem = productElem.querySelector('.quantity-col')
+        let newQuantity = Number(countElem.getAttribute('quantity'))+Number(shift)
+        if (newQuantity >=0) {
+            ajax ('changeProductQuantity', {id:id, newQuantity:newQuantity}, function(result){
+            if (result) {
+                countElem.setAttribute('quantity', newQuantity)
+                countElem.innerHTML = newQuantity+' шт.'
+                if (newQuantity==0) {
+                    productElem.querySelectorAll('li:not(.action-col)').forEach(el=>el.style='opacity: 0.3')
+                }
+                else productElem.querySelectorAll('li:not(.action-col)').forEach(el=>el.style='opacity: 1')
+            }
+        })
+        }
+        
+    }
+
+    function removeProduct(id){
+        
+        let productElem = document.querySelector('.table-item[productId="'+id+'"]')
+        let title = productElem.querySelector('.title-col').innerHTML
+        turnONmodalMessage ('Удалить продукт: "'+title+'"?')
+        
+        setOkModalButton(function (){
+            ajax('removeProduct', {id:id}, function (result){
+                if (result){
+                    productElem.parentNode.removeChild(productElem);
+                    // buildScreen(document.querySelector('.active-pagination').getAttribute('page'))
+                    turnOFFSuperModal()
+                }
+            })
+        }, name = 'Удалить')
+
+        setCancelModalButton ()
         turnONmodal()
     }
 

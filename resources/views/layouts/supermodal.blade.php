@@ -7,12 +7,13 @@
             <button onclick="turnOFFSuperModal()">×</button>
         </div>
         <div class="modal-gallery-block hide">
-            <button class="arrow">
-                <img src="images/arrow-right.svg" alt="" style="transform: rotate(180deg)">
+            <button class="arrow" onclick="shiftGallerySlide (-1)">
+                <img src="{{ asset('images/arrow-right.svg') }}" alt="" style="transform: rotate(180deg)">
             </button>
-            <div class="gallery-image"></div>
-            <button class="arrow">
-                <img src="images/arrow-right.svg" alt="">
+            <div class="gallery-image">
+            </div>
+            <button class="arrow" onclick="shiftGallerySlide (1)">
+                <img src="{{ asset('images/arrow-right.svg') }}" alt="">
             </button>
         </div>
         <div class="modal-img-block hide"></div>
@@ -40,7 +41,6 @@
         okButton.classList.remove('hide')
 
     }
-
 
     function setCancelModalButton(cancelButtonCallback = turnOFFSuperModal, name = 'Отмена') {
 
@@ -90,13 +90,31 @@
         document.querySelector('.modal-img-block').style.backgroundImage = 'url(' + url + ')'
     }
 
-    function turnONmodalGallery (imageArrays) {
+    function turnONmodalGallery (data) {
         document.querySelector('.modal-gallery-block').classList.remove('hide')
         let divImages=''
-        imageArrays.forEach(item => {
-            divImages += '<div style="background-image: url('+item+')"></div>'
+        let index = 0
+        data.imageArrays.forEach(item => {
+            divImages += '<div class="modalGallerySlide'
+            if (index != data.indexArr) divImages +=' hide';
+            divImages +='" style="background-image: url('+item+')"'
+            divImages +='index="'+index+'"></div>'
+            index ++
         });
+        divImages+='<input type="hidden" id="lastIndexSlide" value="'+(index-1)+'">'
         document.querySelector('.gallery-image').innerHTML = divImages
+    }
+
+    function shiftGallerySlide (shift) {
+        let activeSlide = document.querySelector('.modalGallerySlide:not(.hide)')
+        let lastIndex = Number(document.getElementById('lastIndexSlide').value)
+        let currentIndex = Number(activeSlide.getAttribute('index'))
+        
+        let newIndex = currentIndex+shift
+        if (newIndex >=0 && newIndex <=lastIndex) {
+            activeSlide.classList.add ('hide')
+            document.querySelector ('.modalGallerySlide[index="'+newIndex+'"]').classList.remove('hide')
+        }
     }
 
     function turnONmodal(margin, closeButton = true) {

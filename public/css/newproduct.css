@@ -2,24 +2,31 @@ form {
     width: 600px;
 }
 
-.input-block  {
+button {
+    cursor: pointer;
+    outline: none;
+}
+
+.input-block {
     display: flex;
     flex-direction: column;
     /* width: 600px; */
     margin: 20 0;
-    /* background-color: rgb(209, 209, 209);
-    padding: 10px; */
+    background: whitesmoke;
+    padding: 30px;
+    border-radius: 10px;
 }
 
-.input-block > input, .input-block > textarea {
-    
+.input-block>input,
+.input-block>textarea {
     width: 100%;
     order: 1;
     margin-top: 5px;
     outline: none;
 }
 
-.input-block>input, .double-input-block>div>input  {
+.input-block>input,
+.double-input-block>div>input {
     height: 30px;
 }
 
@@ -37,7 +44,6 @@ form {
     order: 1;
     width: 90%;
     margin-top: 5px;
-    
 }
 
 .submit {
@@ -54,3 +60,65 @@ form {
     margin-top: 20px !important;
     color: blue !important;
 }
+
+
+/* edit */
+
+.edit-gallery-block {
+    display: flex;
+    width: 800px;
+    flex-wrap: wrap;
+}
+
+.edit-gallery-item {
+    margin: 10px;
+    padding: 10 10px 0 10px;
+    border-radius: 10px;
+    background-color: rgb(241, 241, 241);
+}
+
+.edit-gallery-image {
+    --imageSize: 130px;
+    border-radius: 10px;
+    margin: 5px;
+    width: var(--imageSize);
+    height: var(--imageSize);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.edit-gallery-buttons {
+    text-align: center;
+    margin: 10px;
+}
+
+.edit-gallery-buttons>button {
+    height: 20px;
+    width: 36px;
+    line-height: 0;
+}
+
+.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.theme-help-block {
+    order: 1;
+    margin-top: 15px;
+}
+
+.theme-help-block>button {
+    font-size: 11px;
+    background: transparent;
+    border: 1px solid gray;
+    border-radius: 20px;
+}
+
+.active-help-button {
+    background-color: #42c3323d !important;
+}
+
+
+/* edit */

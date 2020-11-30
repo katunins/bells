@@ -48,12 +48,21 @@ Route::get('/wharehouse', function () {
 Route::post('/getWharehouse', [WharehouseContoller::class, 'getWharehouseScreen']);
 Route::post('/changeWharehousePage', [WharehouseContoller::class, 'changeWharehousePage']);
 
-Route::get('/newProduct', function () {
+Route::get('/newProduct/{id?}', function ($id=null) {
+    $productData = WharehouseContoller::getProductArr($id);
     if (Auth::check()) {
-        return View('admin.newproduct');
+        if ($id && $productData) return View('admin.newproduct')->with('productEdit', true)->with('productData', $productData)->with('helpTags', WharehouseContoller::getHelpTags());
+        else return View('admin.newproduct')->with('productEdit', false)->with('helpTags', WharehouseContoller::getHelpTags());
     } else {
         return redirect('/admin');
     }
 });
 
-Route::post('getNewProduct', [WharehouseContoller::class, 'getNewProduct']);
+Route::post('getNewProduct', [WharehouseContoller::class, 'getNewProduct'])->name('getNewProduct');
+Route::post('changeProductQuantity', [WharehouseContoller::class, 'changeProductQuantity']);
+Route::post('removeProduct', [WharehouseContoller::class, 'removeProduct']);
+Route::post('changeProductImagesArray', [WharehouseContoller::class, 'changeProductImagesArray']);
+Route::post('removeProductImage', [WharehouseContoller::class, 'removeProductImage']);
+
+
+
