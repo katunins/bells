@@ -53,12 +53,12 @@
 
 <script>
     function changeFilter() {
-        window.filter.filter = []
+        window.filter.themes = []
+        window.filter.mission = []
         document.querySelectorAll('input[name="checkFilter"]').forEach(el => {
-            if (el.checked) window.filter.filter.push({
-                name: el.value,
-                codeName: el.getAttribute('theme')
-            });
+            if (el.checked) {
+                window.filter[el.getAttribute('theme')].push (el.value)
+            }
         })
 
         buildScreen(1)
@@ -87,7 +87,8 @@
     function clearFilter() {
         window.filter = {
             title: '',
-            filter: []
+            themes: [],
+            mission: [],
         }
         buildScreen(1)
     }
@@ -170,12 +171,10 @@
 
     }
 
-    // получает экран товаров - page страницу
+       // получает экран товаров - page страницу
     // shift - нажата кнопка Следующая
     function buildScreen(page, shift = false) {
-        // console.log (filter)
         if (shift != false) page = Number(document.querySelector('.active-pagination').getAttribute('page')) + shift
-        console.log(window.filter)
         ajax('getWharehouse', {
             page: page,
             filter: window.filter

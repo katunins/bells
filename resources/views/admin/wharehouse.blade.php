@@ -11,7 +11,8 @@
         <li class="id-col">id</li>
         <li class="title-col">Название</li>
         <li class="description-col">Описание</li>
-        <li class="filterCol">Тематика</li>
+        <li class="filterThemeCol">Тематика</li>
+        <li class="filterMissionCol">Направление</li>
         <li class="price-col">Цена</li>
         <li class="weight-col">Вес</li>
         <li class="images-col">Изображения</li>
@@ -79,15 +80,21 @@
                 priceCol.className = 'price-col'
                 priceCol.innerHTML = item.price + ' ₽'
 
-                let filterCol = document.createElement('li')
-                filterCol.className = 'filterCol'
-                let filterHTML = ''
-                for (var codeName in item.filter) {
-                    item.filter[codeName].forEach(el => {
-                        filterHTML += '<li>' + el + '</li>'
+                let filterThemeCol = document.createElement('li')
+                filterThemeCol.className = 'filterCol'
+                let filterThemeColHTML = ''
+                item.filter.themes.forEach(el => {
+                        filterThemeColHTML += '<li>' + el + '</li>'
                     })
-                }
-                filterCol.innerHTML = filterHTML
+                filterThemeCol.innerHTML = filterThemeColHTML
+
+                let filterMissionCol = document.createElement('li')
+                filterMissionCol.className = 'filterCol'
+                let filterMissionColHTML = ''
+                item.filter.mission.forEach(el => {
+                        filterMissionColHTML += '<li>' + el + '</li>'
+                    })
+                filterMissionCol.innerHTML = filterMissionColHTML
 
                 let descriptionCol = document.createElement('li')
                 descriptionCol.className = 'description-col'
@@ -109,7 +116,8 @@
                 tableItem.appendChild(idCol)
                 tableItem.appendChild(titleCol)
                 tableItem.appendChild(descriptionCol)
-                tableItem.appendChild(filterCol)
+                tableItem.appendChild(filterThemeCol)
+                tableItem.appendChild(filterMissionCol)
                 tableItem.appendChild(priceCol)
                 tableItem.appendChild(weightCol)
                 tableItem.appendChild(imagesCol)
@@ -247,7 +255,7 @@
         window.filter = {
             title: '',
             themes: [],
-            purpose: [],
+            mission: [],
         }
         buildScreen(1)
     })

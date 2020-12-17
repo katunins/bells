@@ -47,43 +47,49 @@ class WharehouseContoller extends Controller
     // фильтр по которому фильруется
     // array:2 [
     //     "page" => 1
-    //     "filter" => array:2 [
+    //     "filter" => array:3 [
     //       "title" => null
-    //       "filter" => array:1 [
-    //         0 => array:2 [
-    //           "name" => "Подарок"
-    //           "codeName" => "mission"
-    //         ]
-    //       ]
+    //       "themes" => []
+    //       "mission" => []
     //     ]
     //   ]
     public function getWharehouseScreen(Request $request)
     {
-        dd ($request->all());
+
 
         $result = Products::where('title', 'like', '%' . $request->filter['title'] . '%')
             ->orWhere('description', 'like', '%' . $request->filter['title'] . '%')
             ->get();
-
-        // проверка соответстия фильтрам filters
-        $findResult = 0;
-        if (count($request->filter['filter']) > 0) {
-            foreach ($result as $key => $word) {
-                // dd ($key, $word->filter);
-                if (count($word->filter) > 0) {
-                    $productFilter = $word->filter;
-                    foreach ($productFilter as $codeName => $nameArr) {
-                        
-                        foreach ($request->filter['filter'] as $checkedFilter) {
-                            if (array_search($checkedFilter['name'], $nameArr) !==false && $checkedFilter['codeName'] == $codeName) $findResult++;
-                        }
-                    }
-                }
-                if ($findResult == 0) $result->forget($key);
-            }
-        }
-
         
+        // if (count($request->filter['themes']) || count($request->filter['mission']) > 0) {
+            
+            // $prod - один продукт
+            foreach ($result as $prod){
+                
+                $findResult = true; //по умолчанию если фильтров нет - true
+                foreach ($request->filter['themes'] as $filterItem){
+                    // цикл по выбранным Themes
+                    // Если есть такой в продукте - true / false
+                    // цикл по выбранным Mission
+                    // Если есть такой в продукте - true / false
+                }
+            }
+
+            // foreach ($result as $key => $word) {
+            //     if (count($word->filter) > 0) {
+            //         $productFilter = $word->filter;
+            //         foreach ($productFilter as $codeName => $nameArr) {
+
+            //             foreach ($request->filter['filter'] as $checkedFilter) {
+            //                 if (array_search($checkedFilter['name'], $nameArr) !== false && $checkedFilter['codeName'] == $codeName) $findResult++;
+            //             }
+            //         }
+            //     }
+            //     if ($findResult == 0) $result->forget($key);
+            // }
+        // }
+
+
         $result = $result->chunk($this->maxGoodsOnPage);
 
 
@@ -266,6 +272,7 @@ class WharehouseContoller extends Controller
         return response()->json(true);
     }
 
+    // Возвращает названия фильтров
     static function getHelpTags()
     {
         $filters = DB::table('filters')->get();
