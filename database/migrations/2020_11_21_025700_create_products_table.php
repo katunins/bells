@@ -20,8 +20,9 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->integer('price');
             $table->float('weight');
-            $table->json('themes')->nullable();
-            $table->json('missions')->nullable();
+            $table->json('filter');
+            // $table->json('themes')->nullable();
+            // $table->json('missions')->nullable();
             $table->json('images')->nullable();
             $table->timestamps();
         });

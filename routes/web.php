@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome')->with('shop', new ProductController());
+    // return view('welcome')->with('shop', ProductController::getProductToPage());
+    return view('welcome')
+    ->with('topProduct', WharehouseContoller::getTopProducts())
+    ->with('filter', WharehouseContoller::getHelpTags())
+    ->with('maxFilterList', 10);
 });
 
 Route::post('changeFilter', [ProductController::class, 'changeFilter']);
@@ -51,8 +55,8 @@ Route::post('/changeWharehousePage', [WharehouseContoller::class, 'changeWhareho
 Route::get('/newProduct/{id?}', function ($id=null) {
     $productData = WharehouseContoller::getProductArr($id);
     if (Auth::check()) {
-        if ($id && $productData) return View('admin.newproduct')->with('productEdit', true)->with('productData', $productData)->with('helpTags', WharehouseContoller::getHelpTags());
-        else return View('admin.newproduct')->with('productEdit', false)->with('helpTags', WharehouseContoller::getHelpTags());
+        if ($id && $productData) return View('admin.newproduct')->with('productEdit', true)->with('productData', $productData)->with('filter', WharehouseContoller::getHelpTags());
+        else return View('admin.newproduct')->with('productEdit', false)->with('filter', WharehouseContoller::getHelpTags());
     } else {
         return redirect('/admin');
     }

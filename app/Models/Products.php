@@ -11,7 +11,6 @@ class Products extends Model
 
     protected $casts = [
         'images' => 'array',
-        'themes' => 'array',
-        'missions' => 'array'
+        'filter' => 'array'
     ];
 }

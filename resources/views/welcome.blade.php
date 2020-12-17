@@ -45,7 +45,7 @@
             <div class="flex-vert-center">
                 <div id="best-cards-block" class="col-4">
                     <div class="best-cards-container" style="left: 0">
-                        @foreach ($shop->topProducts as $item)
+                        @foreach ($topProduct as $item)
                         <div class="best-card">
                             <a href="{{ $item['link'] }}">
                                 <div class="back-bell" style="background-image: url({{ $item['image'] }})">

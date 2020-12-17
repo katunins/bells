@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ProductThemes extends Migration
+class Filters extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class ProductThemes extends Migration
      */
     public function up()
     {
-        Schema::create('ProductThemes', function (Blueprint $table) {
+        Schema::create('filters', function (Blueprint $table) {
             $table->id();
-            $table->string('theme');
+            $table->string('code');
+            $table->string('codeName');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class ProductThemes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ProductThemes');
+        Schema::dropIfExists('filters');
     }
 }

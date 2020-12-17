@@ -77,24 +77,24 @@
     margin-top: 0;
 }
 
-.filter-group>ul {
+.filter-group {
     list-style: none;
     padding: 0;
-    margin: 0;
+    /* margin: 0; */
 }
 
-.filter-group>ul>li {
+.filter-group>li {
     margin-bottom: 3px;
 }
 
-.filter-group>ul>li input[type="checkbox"] {
+.filter-group>li input[type="checkbox"] {
     display: none;
 }
 
 
 /* стили для метки */
 
-.filter-group>ul>li label {
+.filter-group>li label {
     color: #000;
     cursor: default;
     font-weight: normal;
@@ -110,7 +110,7 @@
 
 /* формируем внешний вид чекбокса в псевдоэлементе before */
 
-.filter-group>ul>li label::before {
+.filter-group>li label::before {
     content: " ";
     color: #424040;
     display: inline-block;
@@ -141,7 +141,7 @@ input:checked+label:before {
 
 /* disabled */
 
-input:disabled+.filter-group>ul>li label::before {
+input:disabled+.filter-group>li label::before {
     background: #eee;
     color: #aaa;
 }
@@ -216,8 +216,9 @@ ul.pagination li a:hover:not(.active) {
 .description-block>.weight {
     position: relative;
     top: -320px;
-    width: 30px;
+    width: 36px;
     text-align: center;
+    padding: 2px 5px;
 }
 
 .description-block {

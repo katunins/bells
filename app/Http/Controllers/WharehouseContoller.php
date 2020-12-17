@@ -11,35 +11,81 @@ use Intervention\Image\ImageManagerStatic as Image;
 class WharehouseContoller extends Controller
 {
 
+
+
+    public function __construct()
+    {
+        $this->maxGoodsOnPage = 9;
+        $this->productImagesFolder = 'public/productImages/';
+    }
+
     // если такого хелпслова нет в базе - добавляет
-    private function checkNewHelpThemes($helpThemes) {
-        $currentThemes = $this->getHelpTags()['themes']->all();
-        foreach ($helpThemes as $item) {
-            if (array_search($item, $currentThemes)===false) {
-                $new[]=$item;
-                DB::table('ProductThemes')->insert(['theme'=>$item]);
+    private function checkNewHelpThemes($filter, $originalFilter)
+    {
+        foreach ($filter as $filterGroupName => $textdata) {
+
+
+            $currentFilters = $this->getHelpTags()[$filterGroupName]['data'];
+            // dd ($this->getHelpTags());
+            foreach ($textdata as $item) {
+                // dd($this->getHelpTags()[$filterGroupName]);
+                if (count($currentFilters) == 0 || array_search($item, $currentFilters) === false) {
+                    DB::table('filters')->insert(
+                        [
+                            'code' => $filterGroupName,
+                            'codeName' => $originalFilter[$filterGroupName]['name'], //нужна для записи Названия раздела
+                            'name' => $item
+                        ]
+                    );
+                }
             }
         }
     }
 
-    public function __construct()
-    {
-        $this->maxGoodsOnPage = 3;
-        $this->productImagesFolder = 'public/productImages/';
-    }
-
     // Возвращает один экран с количеством нужного товара
     // page - нунжная страница
-    // filterTtitle - фильтр
+    // фильтр по которому фильруется
+    // array:2 [
+    //     "page" => 1
+    //     "filter" => array:2 [
+    //       "title" => null
+    //       "filter" => array:1 [
+    //         0 => array:2 [
+    //           "name" => "Подарок"
+    //           "codeName" => "mission"
+    //         ]
+    //       ]
+    //     ]
+    //   ]
     public function getWharehouseScreen(Request $request)
     {
-        
-        $result = Products::where('title', 'like', '%' . $request->filter['title'] . '%')
-            // ->orWhere('description', 'like', '%' . $request->filter['title'] . '%')
-            ->whereJsonContains('themes', '*')
-            ->get()->chunk($this->maxGoodsOnPage);
+        dd ($request->all());
 
-        // dd ($result);
+        $result = Products::where('title', 'like', '%' . $request->filter['title'] . '%')
+            ->orWhere('description', 'like', '%' . $request->filter['title'] . '%')
+            ->get();
+
+        // проверка соответстия фильтрам filters
+        $findResult = 0;
+        if (count($request->filter['filter']) > 0) {
+            foreach ($result as $key => $word) {
+                // dd ($key, $word->filter);
+                if (count($word->filter) > 0) {
+                    $productFilter = $word->filter;
+                    foreach ($productFilter as $codeName => $nameArr) {
+                        
+                        foreach ($request->filter['filter'] as $checkedFilter) {
+                            if (array_search($checkedFilter['name'], $nameArr) !==false && $checkedFilter['codeName'] == $codeName) $findResult++;
+                        }
+                    }
+                }
+                if ($findResult == 0) $result->forget($key);
+            }
+        }
+
+        
+        $result = $result->chunk($this->maxGoodsOnPage);
+
 
         foreach ($result as $key => $chunk) {
             $result[$key] = array_values($chunk->toArray());
@@ -61,6 +107,12 @@ class WharehouseContoller extends Controller
     }
 
     // принимает данные и записывает в базу
+    // "title" => "Андрей - покровитель"
+    // "description" => "Настольный колокол с молитвой святого Андрея на тыльной стороне. Подходит в подарок на юбилей, крестины ребенку, крестнику"
+    // "themes" => "Православные/Стильные/Красивые"
+    // "mission" => "Подарок на крестины/Подарок на именины"
+    // "price" => "5990"
+    // "weight" => "0.35"
     public function getNewProduct(Request $request)
     {
 
@@ -91,19 +143,23 @@ class WharehouseContoller extends Controller
                 'images.*.mimes' => 'Фотографии должны быть jpg форматом',
             ]);
         }
-        if ($request->themes != '') {
-            if (strpos($request->themes, '/') === false) {
-                // одно слово
-                $helpThemes []= $request->themes;
+
+        // работаем с фильтром
+        foreach ($request->filter as $filterGroupName => $textdata) {
+            if ($textdata['data'] != '') {
+                if (strpos($textdata['data'], '/') === false) {
+                    // одно слово
+                    $filter[$filterGroupName][] = $textdata['data'];
+                } else {
+                    $filter[$filterGroupName] = explode('/', $textdata['data']);
+                }
             } else {
-                $helpThemes = explode('/', $request->themes);
+                $filter[$filterGroupName] = [];
             }
-
-            $this->checkNewHelpThemes($helpThemes);
-
-        } else {
-            $helpThemes = [];
         }
+        $this->checkNewHelpThemes($filter, $request->filter);
+
+
         $request->validate($rules, $messages);
 
 
@@ -115,8 +171,8 @@ class WharehouseContoller extends Controller
             if ($product->description != $request->description) $updateArr['description'] = $request->description;
             if ($product->price != $request->price) $updateArr['price'] = $request->price;
             if ($product->weight != $request->weight) $updateArr['weight'] = $request->weight;
-            
-            $updateArr['themes'] = $helpThemes;
+
+            $updateArr['filter'] = $filter;
 
             if ($request->images) {
                 $imagesPaths = [];
@@ -141,8 +197,9 @@ class WharehouseContoller extends Controller
             $newProduct->description = $request->description;
             $newProduct->price = $request->price;
             $newProduct->weight = $request->weight;
-            $newProduct->themes = $helpThemes;
+            $newProduct->filter = $filter;
             $newProduct->save();
+
 
             $imagesPaths = [];
 
@@ -211,10 +268,42 @@ class WharehouseContoller extends Controller
 
     static function getHelpTags()
     {
-        $helpTags = [
-            'themes' => DB::table('ProductThemes')->pluck('theme'),
-            'mission' => DB::table('ProductMissions')->pluck('mission')
+        $filters = DB::table('filters')->get();
+        $result = $result = [
+            'themes' => [
+                'name' => 'Тематика',
+                'data' => [],
+            ],
+            'mission' => [
+                'name' => 'Направление',
+                'data' => [],
+            ],
         ];
-        return  $helpTags;
+        if ($filters->count() > 0) {
+            foreach ($filters as $item) {
+                // нет такого ключа
+                if (!isset($result[$item->code])) {
+                    $result[$item->code]['name'] = $item->codeName;
+                    $result[$item->code]['data'][] = $item->name;
+                } else {
+                    $result[$item->code]['data'][] = $item->name;
+                }
+            }
+        }
+
+        return  $result;
+    }
+
+    static function getTopProducts()
+    {
+        return [
+            [
+                'image' => 'images/test-bell.jpg',
+                'link' => '',
+                'name' => 'Колокол',
+                'price' => 5990,
+                'weight' => 0.35,
+            ]
+        ];
     }
 }

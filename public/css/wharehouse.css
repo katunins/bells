@@ -68,7 +68,7 @@
 /* ширина столбцов */
 
 .id-col {
-    width: 50px;
+    width: 30px;
 }
 
 .quantity-col {
@@ -80,11 +80,20 @@
 }
 
 .description-col {
-    width: 270px;
+    width: 240px;
 }
 
-.themesCol {
-    width: 100px;
+.filterCol {
+    width: 140px;
+}
+
+.filterCol>li {
+    font-size: 9px;
+    background: rgb(211, 210, 210);
+    width: fit-content;
+    padding: 2px 8px;
+    border-radius: 9px;
+    margin: 2px;
 }
 
 .price-col {
@@ -121,7 +130,7 @@
 /* ширина столбцов */
 
 .table-item>li {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .table-item>li>img {
