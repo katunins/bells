@@ -81,49 +81,115 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/general.js":
-/*!*********************************!*\
-  !*** ./resources/js/general.js ***!
-  \*********************************/
+/***/ "./resources/js/wharehouse.js":
+/*!************************************!*\
+  !*** ./resources/js/wharehouse.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-window.ajax = function (url, data) {
-  var callBack = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json, text-plain, */*',
-      'X-Requested-With': 'XMLHttpRequest',
-      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    },
-    method: 'post',
-    credentials: 'same-origin',
-    body: JSON.stringify(data)
-  }).then(function (response) {
-    return response.json();
-  }).then(function (response) {
-    if (callBack) callBack(response); // console.log (callBack);
-  })["catch"](function (error) {
-    console.log(error);
+window.changeFilter = function () {
+  window.filter.themes = [];
+  window.filter.mission = [];
+  document.querySelectorAll('input[name="checkFilter"]').forEach(function (el) {
+    if (el.checked) {
+      window.filter[el.getAttribute('theme')].push(el.value);
+    }
+  });
+  buildScreen(1);
+};
+
+window.clearFilter = function () {
+  document.querySelectorAll('input[name="checkFilter"]').forEach(function (el) {
+    el.checked = false;
+  });
+  window.filter = {
+    title: '',
+    themes: [],
+    mission: []
+  };
+  buildScreen(1);
+}; // рендерит кнопки страниц
+//             currentPage:result.currentPage, 
+//             pageQuantity:result.pageQuantity
+
+
+window.renderPagination = function (data) {
+  if (data.pageQuantity <= 1) return;
+  var buttonsHtml = '';
+
+  for (var index = 1; index <= data.pageQuantity; index++) {
+    buttonsHtml += '<li><button ';
+    if (index == data.currentPage) buttonsHtml += 'class="active-pagination" ';
+    buttonsHtml += 'page="' + index + '" ';
+    buttonsHtml += 'onclick="buildScreen(' + index + ')">';
+    buttonsHtml += index;
+    buttonsHtml += '</button></li>';
+  }
+
+  if (data.currentPage < data.pageQuantity) {
+    buttonsHtml += '<li><button onclick="buildScreen(0, 1)">Следующая</button></li>';
+  }
+
+  var table = document.querySelector('.pagination-block');
+  var pagination = document.querySelector('ul.pagination');
+
+  if (pagination === null) {
+    pagination = document.createElement('ul');
+  }
+
+  pagination.className = 'pagination';
+  pagination.setAttribute('maxPage', data.pageQuantity);
+  pagination.innerHTML = buttonsHtml;
+  table.appendChild(pagination);
+}; // ввод в поисковое поле
+
+
+window.newSearch = function () {
+  var reset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  if (typeof cloneInputText === "function") cloneInputText();
+  var titleFilter = event.target.value;
+  if (reset) titleFilter = '';
+  window.filter.title = titleFilter;
+  buildScreen(1, false);
+}; // получает экран товаров - page страницу
+// shift - нажата кнопка Следующая
+
+
+window.buildScreen = function (page) {
+  var shift = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  if (shift != false) page = Number(document.querySelector('.active-pagination').getAttribute('page')) + shift;
+  ajax('getWharehouse', {
+    page: page,
+    filter: window.filter
+  }, function (result) {
+    renderPage(result.data);
+    renderPagination({
+      currentPage: result.currentPage,
+      pageQuantity: result.pageQuantity
+    });
   });
 };
 
+document.addEventListener('DOMContentLoaded', function () {
+  clearFilter();
+});
+
 /***/ }),
 
-/***/ 3:
-/*!***************************************!*\
-  !*** multi ./resources/js/general.js ***!
-  \***************************************/
+/***/ 2:
+/*!******************************************!*\
+  !*** multi ./resources/js/wharehouse.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/js/general.js */"./resources/js/general.js");
+module.exports = __webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/js/wharehouse.js */"./resources/js/wharehouse.js");
 
 
 /***/ })

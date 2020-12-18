@@ -7,63 +7,54 @@
     </div>
     <div class="main-shop-block">
         <div class="filter-block col-2">
-            @foreach($filter as $filterGroupName => $filterGroup)
-                @if(count($filterGroup['data'])>0)
+            @foreach ($filter as $filterGroupName => $filterGroup)
+                @if (count($filterGroup['data']) > 0)
                     <div class="filter-group" theme={{ $filterGroupName }}>
                         <p>{{ $filterGroup['name'] }}</p>
                         @php
-                            $quantity = 0;
+                        $quantity = 0;
                         @endphp
-                        @foreach($filterGroup['data'] as $key=>$item)
+                        @foreach ($filterGroup['data'] as $key => $item)
                             @php
-                                $quantity++;
+                            $quantity++;
                             @endphp
                             <li>
-                                <input index={{ $key }} id="{{ $filterGroupName.'_'.$key }}"
-                                    type="checkbox" theme={{ $filterGroupName }} value="{{ $item }}"
-                                    onchange="changeFilter()" name='checkFilter'>
-                                <label @if($quantity> $maxFilterList) class=" hide" needToHide=true @endif
-                                    for="{{ $filterGroupName.'_'.$key }}">{{ $item }}</label>
-                            </li>
-                        @endforeach
-
-                        @if($quantity > $maxFilterList)
-                            <li><button status=false theme={{ $filterGroupName }} class="openmore"
-                                    onclick="openMore()">...</button>
-                            </li>
+                                <input index={{ $key }} id="{{ $filterGroupName . '_' . $key }}" type="checkbox"
+                                    theme={{ $filterGroupName }} value="{{ $item }}" onchange="changeFilter()"
+                                    name='checkFilter'>
+                                <label @if ($quantity > $maxFilterList) class=" hide"
+                                    needToHide=true
                         @endif
-                    </div>
+                        for="{{ $filterGroupName . '_' . $key }}">{{ $item }}</label>
+                        </li>
+                @endforeach
+
+                @if ($quantity > $maxFilterList)
+                    <li><button status=false theme={{ $filterGroupName }} class="openmore"
+                            onclick="openMore()">...</button>
+                    </li>
                 @endif
-            @endforeach
-            <div class="filter-group">
-                <button class="clear-filter" onclick="clearFilter()">Сбросить фильтр</button>
-            </div>
         </div>
-
-        <div class="goods-block col-8"></div>
-    </div>
-    <div class="footer-shop-block">
-        <div class="pagination-block">
-
+        @endif
+        @endforeach
+        <div class="filter-group">
+            <button class="clear-filter" onclick="clearFilter()">Сбросить фильтр</button>
         </div>
-        <input class="shop-search" type="text" id="bottom-search" placeholder="Подарок на юбилей ..."
-            oninput="newSearch()">
     </div>
+
+    <div class="goods-block col-8"></div>
+</div>
+<div class="footer-shop-block">
+    <div class="pagination-block">
+
+    </div>
+    <input class="shop-search" type="text" id="bottom-search" placeholder="Подарок на юбилей ..." oninput="newSearch()">
+</div>
 </div>
 
+<script src="js/wharehouse.js"></script>
+
 <script>
-    function changeFilter() {
-        window.filter.themes = []
-        window.filter.mission = []
-        document.querySelectorAll('input[name="checkFilter"]').forEach(el => {
-            if (el.checked) {
-                window.filter[el.getAttribute('theme')].push (el.value)
-            }
-        })
-
-        buildScreen(1)
-    }
-
     function openMore() {
         // console.log(event.target.parentNode.parentNode)
         let eventButton = event.target
@@ -82,15 +73,6 @@
                 }
             })
         eventButton.setAttribute('status', status === 'false')
-    }
-
-    function clearFilter() {
-        window.filter = {
-            title: '',
-            themes: [],
-            mission: [],
-        }
-        buildScreen(1)
     }
 
     // перерисовывает продукты на странице
@@ -138,55 +120,6 @@
         })
     }
 
-    // рендерит кнопки страниц
-    //             currentPage:result.currentPage, 
-    //             pageQuantity:result.pageQuantity
-    function renderPagination(data) {
-        if (data.pageQuantity <= 1) return
-        let buttonsHtml = ''
-        for (let index = 1; index <= data.pageQuantity; index++) {
-            buttonsHtml += '<li><button '
-            if (index == data.currentPage) buttonsHtml += 'class="active-pagination" '
-            buttonsHtml += 'page="' + index + '" '
-            buttonsHtml += 'onclick="buildScreen(' + index + ')">'
-            buttonsHtml += index
-            buttonsHtml += '</button></li>'
-        }
-        if (data.currentPage < data.pageQuantity) {
-            buttonsHtml += '<li><button onclick="buildScreen(0, 1)">Следующая</button></li>'
-        }
-
-        let table = document.querySelector('.pagination-block')
-
-        let pagination = document.querySelector('ul.pagination')
-        if (pagination === null) {
-            pagination = document.createElement('ul')
-        }
-
-        pagination.className = 'pagination'
-        pagination.setAttribute('maxPage', data.pageQuantity)
-
-        pagination.innerHTML = buttonsHtml
-        table.appendChild(pagination)
-
-    }
-
-       // получает экран товаров - page страницу
-    // shift - нажата кнопка Следующая
-    function buildScreen(page, shift = false) {
-        if (shift != false) page = Number(document.querySelector('.active-pagination').getAttribute('page')) + shift
-        ajax('getWharehouse', {
-            page: page,
-            filter: window.filter
-        }, function (result) {
-            renderPage(result.data)
-            renderPagination({
-                currentPage: result.currentPage,
-                pageQuantity: result.pageQuantity
-            })
-        })
-    }
-
     // Клонирует value у поисковых инпутов - дублеров
     function cloneInputText() {
         let inputElems = document.querySelectorAll('.shop-search')
@@ -196,20 +129,5 @@
             if (el.value != currentValue) el.value = currentValue
         })
     }
-
-    // ввод в поисковое поле
-    function newSearch(reset = false) {
-        cloneInputText()
-        let titleFilter = event.target.value
-        if (reset) titleFilter = ''
-        window.filter.title = titleFilter
-        buildScreen(1, false)
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // прогрузим страницу с продуктом
-        clearFilter()
-
-    })
 
 </script>

@@ -60,34 +60,22 @@ class WharehouseContoller extends Controller
         $result = Products::where('title', 'like', '%' . $request->filter['title'] . '%')
             ->orWhere('description', 'like', '%' . $request->filter['title'] . '%')
             ->get();
-        
-        // if (count($request->filter['themes']) || count($request->filter['mission']) > 0) {
-            
-            // $prod - один продукт
-            foreach ($result as $prod){
-                
-                $findResult = true; //по умолчанию если фильтров нет - true
-                foreach ($request->filter['themes'] as $filterItem){
-                    // цикл по выбранным Themes
-                    // Если есть такой в продукте - true / false
-                    // цикл по выбранным Mission
-                    // Если есть такой в продукте - true / false
+
+        // Отфильтруем
+        // $prod - один продукт
+        foreach ($result as $productKey => $prod) {
+
+            $findResult = 1; //по умолчанию если фильтров нет - true
+            foreach ($request->filter as $filterName => $filterItem) {
+                if ($filterName == 'title') continue;
+                foreach ($filterItem as $item) {
+
+                    $findResult *= array_search($item, $prod->filter[$filterName])=== false ? 0 : 1;
                 }
             }
 
-            // foreach ($result as $key => $word) {
-            //     if (count($word->filter) > 0) {
-            //         $productFilter = $word->filter;
-            //         foreach ($productFilter as $codeName => $nameArr) {
-
-            //             foreach ($request->filter['filter'] as $checkedFilter) {
-            //                 if (array_search($checkedFilter['name'], $nameArr) !== false && $checkedFilter['codeName'] == $codeName) $findResult++;
-            //             }
-            //         }
-            //     }
-            //     if ($findResult == 0) $result->forget($key);
-            // }
-        // }
+            if ($findResult == 0) $result->forget($productKey);
+        }
 
 
         $result = $result->chunk($this->maxGoodsOnPage);

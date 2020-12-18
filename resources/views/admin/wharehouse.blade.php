@@ -25,7 +25,7 @@
 </div>
 </div>
 @endsection
-
+<script src="js/wharehouse.js"></script>
 <script>
     // рендерит экран
     // принимает объект из товаров
@@ -136,62 +136,6 @@
         }
     }
 
-    // рендерит кнопки страниц
-    //             currentPage:result.currentPage, 
-    //             pageQuantity:result.pageQuantity
-    function renderPagination(data) {
-        if (data.pageQuantity <= 1) return
-        let buttonsHtml = ''
-        for (let index = 1; index <= data.pageQuantity; index++) {
-            buttonsHtml += '<li><button '
-            if (index == data.currentPage) buttonsHtml += 'class="active-pagination" '
-            buttonsHtml += 'page="' + index + '" '
-            buttonsHtml += 'onclick="buildScreen(' + index + ')">'
-            buttonsHtml += index
-            buttonsHtml += '</button></li>'
-        }
-        if (data.currentPage < data.pageQuantity) {
-            buttonsHtml += '<li><button onclick="buildScreen(0, 1)">Следующая</button></li>'
-        }
-
-        let table = document.querySelector('.table')
-
-        let pagination = document.querySelector('ul.pagination')
-        if (pagination === null) {
-            pagination = document.createElement('ul')
-        }
-
-        pagination.className = 'pagination'
-        pagination.setAttribute('maxPage', data.pageQuantity)
-
-        pagination.innerHTML = buttonsHtml
-        table.appendChild(pagination)
-
-    }
-
-    // получает экран товаров - page страницу
-    // shift - нажата кнопка Следующая
-    function buildScreen(page, shift = false) {
-        if (shift != false) page = Number(document.querySelector('.active-pagination').getAttribute('page')) + shift
-        ajax('getWharehouse', {
-            page: page,
-            filter: window.filter
-        }, function (result) {
-            renderPage(result.data)
-            renderPagination({
-                currentPage: result.currentPage,
-                pageQuantity: result.pageQuantity
-            })
-        })
-    }
-
-    // нажата кнопка поиска
-    function newSearch(reset = false) {
-        let titleFilter = event.target.value
-        if (reset) titleFilter = ''
-        window.filter.title = titleFilter
-        buildScreen(1, false)
-    }
 
     // нажата картинка
     // id товара
@@ -251,13 +195,5 @@
         turnONmodal()
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        window.filter = {
-            title: '',
-            themes: [],
-            mission: [],
-        }
-        buildScreen(1)
-    })
 
 </script>
