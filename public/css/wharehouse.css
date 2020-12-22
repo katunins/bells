@@ -1,60 +1,61 @@
+@charset "UTF-8";
+
 .table {
-    /* width: 100%; */
-    margin: 10px;
-    /* background-color: turquoise; */
+  /* width: 100%; */
+  margin: 10px;
+  /* background-color: turquoise; */
 }
 
 .table li {
-    list-style: none;
-    /* padding: 10px; */
+  list-style: none;
+  /* padding: 10px; */
 }
 
 .table-filter {
-    height: 30px;
-    /* text-align: center; */
-    margin: 20px;
-    margin-left: 0;
+  height: 30px;
+  /* text-align: center; */
+  margin: 20px;
+  margin-left: 0;
 }
 
-.table-filter>#filterTitle {
-    width: 300px;
-    height: 100%;
-    text-align: center;
+.table-filter > #filterTitle {
+  width: 300px;
+  height: 100%;
+  text-align: center;
 }
 
-.table-filter>button {
-    height: 100%;
+.table-filter > button {
+  height: 100%;
 }
 
 .table-head,
 .table-item {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    border-bottom: 1px solid gainsboro;
-    padding: 5px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 1px solid gainsboro;
+  padding: 5px 0;
 }
 
-.table-head>li {
-    font-size: 14px;
-    font-weight: bold;
+.table-head > li {
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.images-col>button.image-button {
-    --imageSize: 60px;
-    display: inline-block;
-    margin-left: 3px;
-    width: var(--imageSize);
-    height: var(--imageSize);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-    cursor: pointer;
-    outline: none;
+.images-col > button.image-button {
+  --imageSize: 60px;
+  display: inline-block;
+  margin-left: 3px;
+  width: var(--imageSize);
+  height: var(--imageSize);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
 }
-
 
 /* .first-image {
     border: 1px solid orange;
@@ -64,95 +65,97 @@
     background-position: bottom !important;
 } */
 
-
 /* ширина столбцов */
 
 .id-col {
-    width: 30px;
+  width: 30px;
 }
 
 .quantity-col {
-    width: 50px;
+  width: 50px;
 }
 
 .title-col {
-    width: 150px;
+  width: 150px;
 }
 
 .description-col {
-    width: 240px;
+  width: 240px;
 }
 
-.filterThemeCol, .filterMissionCol {
-    width: 140px;
+.filterThemeCol,
+.filterMissionCol {
+  width: 140px;
 }
 
-.filterCol>li {
-    font-size: 9px;
-    background: rgb(211, 210, 210);
-    width: fit-content;
-    padding: 2px 8px;
-    border-radius: 9px;
-    margin: 2px;
+.filterCol > li {
+  font-size: 9px;
+  background: #d3d2d2;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 9px;
+  margin: 2px;
 }
 
 .price-col {
-    width: 60px;
+  width: 60px;
 }
 
 .weight-col {
-    width: 60px;
+  width: 60px;
 }
 
 .images-col {
-    width: 350px;
+  width: 350px;
 }
 
 .action-col {
-    width: 100px;
-    text-align: center;
+  width: 100px;
+  text-align: center;
 }
 
 .action-col button {
-    width: 90%;
-    margin: 2px 0;
-    font-size: 11px;
-    border: 1px solid rgb(209, 209, 209);
-    outline: none;
+  width: 90%;
+  margin: 2px 0;
+  font-size: 11px;
+  border: 1px solid #d1d1d1;
+  outline: none;
 }
 
-.changeQuantityButtons>button {
-    margin: 2px;
-    width: 43%;
+.changeQuantityButtons > button {
+  margin: 2px;
+  width: 43%;
 }
-
 
 /* ширина столбцов */
 
-.table-item>li {
-    font-size: 12px;
+.table-item > li {
+  font-size: 12px;
 }
 
-.table-item>li>img {
-    width: 100px;
-    border: 1px solid gainsboro;
+.table-item > li > img {
+  width: 100px;
+  border: 1px solid gainsboro;
 }
 
 .pagination {
-    display: flex;
-    padding: 0;
+  display: flex;
+  padding: 0;
 }
 
-.pagination>li {
-    margin: 2px;
+.pagination > li {
+  margin: 2px;
 }
 
-.pagination>li>button {
-    border: 1px solid rgba(128, 128, 128, 0.404);
-    border-radius: 2px;
-    cursor: pointer;
+.pagination > li > button {
+  border: 1px solid rgba(128, 128, 128, 0.404);
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .active-pagination {
-    background-color: darkgrey;
+  background-color: darkgrey;
 }
+

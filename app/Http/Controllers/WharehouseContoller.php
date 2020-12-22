@@ -46,7 +46,7 @@ class WharehouseContoller extends Controller
     // page - нунжная страница
     // фильтр по которому фильруется
     // array:2 [
-    //     "page" => 1
+    //     "page" => 1,
     //     "filter" => array:3 [
     //       "title" => null
     //       "themes" => []
@@ -58,19 +58,16 @@ class WharehouseContoller extends Controller
 
 
         $result = Products::where('title', 'like', '%' . $request->filter['title'] . '%')
+            // ->where('quantity', '<>', 0)
             ->orWhere('description', 'like', '%' . $request->filter['title'] . '%')
             ->get();
-
-        // Отфильтруем
-        // $prod - один продукт
         foreach ($result as $productKey => $prod) {
-
             $findResult = 1; //по умолчанию если фильтров нет - true
             foreach ($request->filter as $filterName => $filterItem) {
                 if ($filterName == 'title') continue;
                 foreach ($filterItem as $item) {
 
-                    $findResult *= array_search($item, $prod->filter[$filterName])=== false ? 0 : 1;
+                    $findResult *= array_search($item, $prod->filter[$filterName]) === false ? 0 : 1;
                 }
             }
 

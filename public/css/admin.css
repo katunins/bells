@@ -1,104 +1,105 @@
 * {
-    font-family: 'Roboto', sans-serif;
-    font-weight: normal;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
 }
 
 button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 button:active {
-    opacity: 0.4 !important;
+  opacity: 0.4 !important;
 }
 
 .info {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .menu-block {
-    background-color: darkgray;
-    display: flex;
-    justify-content: space-evenly;
+  background-color: darkgray;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .menu {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60px;
 }
 
-.menu>* {
-    margin: 5px;
+.menu > * {
+  margin: 5px;
 }
 
-.menu>li>h3 {
-    margin: 0 20px;
+.menu > li > h3 {
+  margin: 0 20px;
 }
 
-.menu>li {
-    list-style: none;
+.menu > li {
+  list-style: none;
 }
 
-.menu>li>a {
-    text-decoration: none;
-    color: white;
-    background-color: rgb(75, 74, 74);
-    font-size: smaller;
-    height: 30px;
-    vertical-align: middle;
-    border-radius: 5px;
-    padding: 3px 15px;
+.menu > li > a {
+  text-decoration: none;
+  color: white;
+  background-color: #4b4a4a;
+  font-size: smaller;
+  height: 30px;
+  vertical-align: middle;
+  border-radius: 5px;
+  padding: 3px 15px;
 }
 
 .work-area {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
 
 /* SignIn */
 
 .signin-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: calc(50vh - 150px);
-    background-color: grey;
-    padding: 30px 50px;
-    border-radius: 10px;
-    color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: calc(50vh - 150px);
+  background-color: grey;
+  padding: 30px 50px;
+  border-radius: 10px;
+  color: white;
 }
 
 .signin-container * {
-    outline: none;
+  outline: none;
 }
 
 .form-block input {
-    width: 250px;
-    height: 30px;
-    text-align: center;
-    margin: 5px;
+  width: 250px;
+  height: 30px;
+  text-align: center;
+  margin: 5px;
 }
 
 .signin-container button {
-    margin-top: 20px;
-    padding: 10px 30px;
-    border-radius: 30px;
-    border: 0;
-    background-color: darkgrey;
-    color: white;
-    cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 30px;
+  border-radius: 30px;
+  border: 0;
+  background-color: darkgrey;
+  color: white;
+  cursor: pointer;
 }
 
 .signin-container .error {
-    color: yellow;
+  color: yellow;
 }
 
-
 /* SignIn */
+

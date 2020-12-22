@@ -43,12 +43,73 @@
     </div>
 
     <div class="goods-block col-8"></div>
+
+
 </div>
 <div class="footer-shop-block">
     <div class="pagination-block">
 
     </div>
     <input class="shop-search" type="text" id="bottom-search" placeholder="Подарок на юбилей ..." oninput="newSearch()">
+</div>
+<div class="modal-detail">
+    <div class="content">
+        <div class="flex-block">
+            <div class="detail">
+                <div class="block">
+                    <h1>Колокол</h1>
+                    <p class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde esse eum
+                        inventore
+                        saepe sunt. Voluptatum amet, odit praesentium voluptatem blanditiis est in accusantium
+                        similique,
+                        ullam impedit molestias exercitationem numquam minima?</p>
+                </div>
+                <div class="block">
+                    <h3>Выберете подставку</h3>
+                    <div class="stand">
+                        @foreach ([
+                            [
+                                'title' => 'Без подставки',
+                                'image' => '',
+                            ],
+                            [
+                                'title' => 'Дуб',
+                                'image' => 'images/stand/oak.jpg',
+                            ],
+                            [
+                                'title' => 'Орех',
+                                'image' => 'images/stand/oak.jpg',
+                            ],
+                        ] as $key => $item)
+                            <input type="radio" name="desk" id="desk-{{ $key }}" @if ($key == 0) checked
+                        @endif >
+                        <label for="desk-{{ $key }}" style="background-image: url({{ $item['image'] }})">
+                            <span>{{ $item['title'] }}</span>
+                        </label>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="image-block">
+                <div class="arrows">
+                    <button id="detail-bells-left" class="transparent-button" onclick="shiftDetailProducts(-1)">
+                        <img style="transform: rotate(180deg);" src="images/arrow-right.svg" alt="">
+                    </button>
+                    <button id="detail-bells-right" class="transparent-button" onclick="shiftDetailProducts(1)">
+                        <img src="images/arrow-right.svg" alt="">
+                    </button>
+                </div>
+                <div class="image" style="background-image: url(images/test-bell.jpg)"></div>
+                <div class="gallery">
+                    @foreach (['', '', '', '', ''] as $key => $item)
+                        <button @if ($key == 0) class="active"
+                    @endif style="background-image: url(images/test-bell.jpg)"></button>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 </div>
 
@@ -98,7 +159,7 @@
 
             let price = document.createElement('div')
             price.className = 'price'
-            price.innerHTML = item.price + ' ₽'
+            price.innerHTML = item.quantity > 0 ? item.price + ' ₽' : 'Нет на складе'
 
             let weight = document.createElement('div')
             weight.className = 'weight'
@@ -108,13 +169,23 @@
             let descriptionBlock = document.createElement('div')
             descriptionBlock.className = 'description-block'
 
+            let toOpen = document.createElement('span')
+            toOpen.className = 'arrow-to-open'
+            toOpen.innerHTML = '→'
+
             descriptionBlock.appendChild(titleElem)
             descriptionBlock.appendChild(descriptionElem)
             descriptionBlock.appendChild(price)
+
+            if (item.quantity > 0) descriptionBlock.appendChild(toOpen);
             descriptionBlock.appendChild(weight)
 
             productCardElem.appendChild(backImgElem)
             productCardElem.appendChild(descriptionBlock)
+
+
+
+            // if (item.quantity == 0) productCardElem.classList.add ('none')
 
             goodsBlock.appendChild(productCardElem)
         })

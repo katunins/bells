@@ -74,6 +74,7 @@ window.buildScreen = function (page, shift = false) {
         page: page,
         filter: window.filter
     }, function (result) {
+        console.log (result)
         renderPage(result.data)
         renderPagination({
             currentPage: result.currentPage,

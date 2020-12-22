@@ -168,6 +168,7 @@ window.buildScreen = function (page) {
     page: page,
     filter: window.filter
   }, function (result) {
+    console.log(result);
     renderPage(result.data);
     renderPagination({
       currentPage: result.currentPage,
