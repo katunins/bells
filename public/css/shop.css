@@ -234,6 +234,11 @@ ul.pagination li a:hover:not(.active) {
   margin-left: 10px;
 }
 
+.shop > .disable {
+  display: none !important;
+  pointer-events: none;
+}
+
 .shop > .modal-detail {
   --size: 500px;
   --miniSize: 80px;
@@ -250,11 +255,22 @@ ul.pagination li a:hover:not(.active) {
 
 .shop > .modal-detail .content {
   width: 900px;
-  height: 800px;
+  height: 600px;
   padding: 40px;
   background-color: white;
   border-radius: 7px;
   filter: drop-shadow(3px 3px 4px #dadada);
+  position: relative;
+}
+
+.shop > .modal-detail .content .close {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 20px;
+  height: 20px;
+  background: url("/images/close.svg") center no-repeat;
+  background-size: cover;
 }
 
 .shop > .modal-detail .content .flex-block {
@@ -263,7 +279,24 @@ ul.pagination li a:hover:not(.active) {
 }
 
 .shop > .modal-detail .content .detail {
-  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.shop > .modal-detail .content .detail p#detail-description {
+  text-align: left;
+}
+
+.shop > .modal-detail .content .detail li {
+  list-style: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 2px 15px;
+  background-color: #bbbbbb;
+  border-radius: 10px;
+  font-size: 11px;
+  margin: 5px 5px 0 0;
+  display: inline-block;
 }
 
 .shop > .modal-detail .content .detail .block {
@@ -271,6 +304,11 @@ ul.pagination li a:hover:not(.active) {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .shop > .modal-detail .content .detail h1 {
@@ -281,11 +319,11 @@ ul.pagination li a:hover:not(.active) {
   display: flex;
 }
 
-.shop > .modal-detail .content .detail .stand input {
+.shop > .modal-detail .content .detail .stand .desk-group input {
   display: none;
 }
 
-.shop > .modal-detail .content .detail .stand label {
+.shop > .modal-detail .content .detail .stand .desk-group label {
   border-radius: 7px;
   margin: 8px 5px 0 0;
   padding: 0px !important;
@@ -295,17 +333,18 @@ ul.pagination li a:hover:not(.active) {
   background-position: center;
   background-repeat: no-repeat;
   border: 1px solid #b3b3b3;
-  text-align: center;
+  position: relative;
+  display: block;
 }
 
-.shop > .modal-detail .content .detail .stand label span {
-  position: relative;
-  top: 85px;
+.shop > .modal-detail .content .detail .stand .desk-group p {
+  width: var(--miniSize);
+  text-align: center;
   color: black;
   font-size: 13px;
 }
 
-.shop > .modal-detail .content .detail .stand input:checked + label > span:after {
+.shop > .modal-detail .content .detail .stand .desk-group input:checked + label:after {
   content: "";
   width: 35px;
   height: 35px;
@@ -313,8 +352,31 @@ ul.pagination li a:hover:not(.active) {
   background-size: cover;
   position: absolute;
   font-size: 40px;
-  top: -62px;
-  left: -6px;
+  top: 22px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+}
+
+.shop > .modal-detail .content .detail .to-order #to-order-price {
+  font-size: 35px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.shop > .modal-detail .content .detail .to-order #to-order-price::after {
+  content: "\20BD";
+  margin-left: 5px;
+}
+
+.shop > .modal-detail .content .detail .to-order button {
+  width: 200px;
+  padding: 10px;
+  background: #865838;
+  font-weight: normal;
+  color: white;
+  font-size: 16px;
+  border-radius: 20px;
 }
 
 .shop > .modal-detail .content .image-block {
@@ -334,7 +396,7 @@ ul.pagination li a:hover:not(.active) {
   background-repeat: no-repeat;
 }
 
-.shop > .modal-detail .content .image-block .gallery {
+.shop > .modal-detail .content .image-block #detail-gallery {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -342,7 +404,7 @@ ul.pagination li a:hover:not(.active) {
   margin: 0 auto;
 }
 
-.shop > .modal-detail .content .image-block .gallery button {
+.shop > .modal-detail .content .image-block #detail-gallery button {
   border-radius: 7px;
   margin: 8px 5px 0 0;
   padding: 0px !important;
@@ -355,7 +417,7 @@ ul.pagination li a:hover:not(.active) {
   opacity: 0.4;
 }
 
-.shop > .modal-detail .content .image-block .gallery button.active {
+.shop > .modal-detail .content .image-block #detail-gallery button.active {
   opacity: 1;
 }
 

@@ -235,6 +235,12 @@ ul.pagination li a:hover:not(.active) {
     margin-left: 10px;
 }
 
+
+.shop>.disable {
+    display: none !important;
+    pointer-events: none;
+}
+
 .shop>.modal-detail {
 
     --size: 500px;
@@ -252,11 +258,22 @@ ul.pagination li a:hover:not(.active) {
 
     .content {
         width: 900px;
-        height: 800px;
+        height: 600px;
         padding: 40px;
         background-color: white;
         border-radius: 7px;
         filter: drop-shadow(3px 3px 4px rgb(218, 218, 218));
+        position: relative;
+
+        .close {
+            position: absolute;
+            top: 9px;
+            right: 9px;
+            width: 20px;
+            height: 20px;
+            background: url('/images/close.svg') center no-repeat;
+            background-size: cover;
+        }
 
         .flex-block {
             display: flex;
@@ -264,11 +281,33 @@ ul.pagination li a:hover:not(.active) {
         }
 
         .detail {
-            margin-right: 30px;
+            margin-left: 30px;
+
+            p#detail-description {
+                text-align: left;
+            }
+
+            li {
+                list-style: none;
+                width: fit-content;
+                padding: 2px 15px;
+                background-color: rgb(187, 187, 187);
+                border-radius: 10px;
+                font-size: 11px;
+                margin: 5px 5px 0 0;
+                display: inline-block;
+
+            }   
+
             .block {
                 display: block;
                 height: fit-content;
-            };
+                width: fit-content;
+                margin: 0 auto;
+                text-align: center
+            }
+
+            ;
 
             h1 {
                 margin: 0;
@@ -277,40 +316,73 @@ ul.pagination li a:hover:not(.active) {
             .stand {
                 display: flex;
 
-                input {
-                    display: none;
-                }
-
-                label {
-                    border-radius: 7px;
-                    margin: 8px 5px 0 0;
-                    padding: 0px !important;
-                    width: var(--miniSize);
-                    height: var(--miniSize);
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    border: 1px solid rgb(179, 179, 179);
-                    text-align: center;
-
-                    span {
+                .desk-group {
+                    input {
+                        display: none;
+                    }
+    
+                    label {
+                        border-radius: 7px;
+                        margin: 8px 5px 0 0;
+                        padding: 0px !important;
+                        width: var(--miniSize);
+                        height: var(--miniSize);
+                        background-size: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        border: 1px solid rgb(179, 179, 179);
                         position: relative;
-                        top: 85px;
+                        display: block;
+    
+                        
+                    }
+
+                    p {
+                        width: var(--miniSize);
+                        text-align: center;
+                        // position: relative;
+                        // top: 85px;
                         color: black;
-                        font-size: 13px;    
+                        font-size: 13px;
+                    }
+    
+                    input:checked+label:after {
+                        content: "";
+                        width: 35px;
+                        height: 35px;
+                        background: url(/images/check.svg) center no-repeat;
+                        background-size: cover;
+                        position: absolute;
+                        font-size: 40px;
+                        top: 22px;
+                        left: 0px;
+                        right: 0px;
+                        margin: 0 auto;
                     }
                 }
+                
+            }
 
-                input:checked+label>span:after {
-                    content: "";
-                    width: 35px;
-                    height: 35px;
-                    background: url(/images/check.svg) center no-repeat;
-                    background-size: cover;
-                    position: absolute;
-                    font-size: 40px;
-                    top: -62px;
-                    left: -6px;
+            .to-order {
+
+                #to-order-price {
+                    font-size: 35px;
+                    font-weight: normal;   
+                    text-align: center;
+                }
+    
+                #to-order-price::after {
+                    content: "₽";
+                    margin-left: 5px;
+                }
+                button {
+                    width: 200px;
+                    padding: 10px;
+                    background: rgb(134, 88, 56);
+                    font-weight: normal;
+                    color: white;
+                    font-size: 16px;
+                    border-radius: 20px;
                 }
             }
         }
@@ -329,7 +401,7 @@ ul.pagination li a:hover:not(.active) {
                 background-repeat: no-repeat;
             }
 
-            .gallery {
+            #detail-gallery {
                 width: fit-content;
                 height: 100px;
                 margin: 0 auto;
