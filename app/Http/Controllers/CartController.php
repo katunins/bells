@@ -26,6 +26,6 @@ class CartController extends Controller
 
     static function getCart()
     {
-        return View('basket')->with('cart', DB::table('cart')->where('userToken', session()->get('_token')));
+        return View('basket')->with('cart', DB::table('cart')->where('userToken', session()->get('_token'))->get());
     }
 }
