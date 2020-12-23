@@ -60,28 +60,27 @@
 
                 <div class="image-block">
                     <div class="arrows">
-                        <button id="detail-bells-left" class="transparent-button" onclick="shiftDetailProducts(-1)">
+                        <button id="detail-bells-left" class="transparent-button" onclick="shiftGallery(-1)">
                             <img style="transform: rotate(180deg);" src="images/arrow-right.svg" alt="">
                         </button>
-                        <button id="detail-bells-right" class="transparent-button" onclick="shiftDetailProducts(1)">
+                        <button id="detail-bells-right" class="transparent-button" onclick="shiftGallery(1)">
                             <img src="images/arrow-right.svg" alt="">
                         </button>
                     </div>
-                    <div class="image" style="background-image: url(images/test-bell.jpg)"></div>
+                    <div id="image"></div>
                     <div id="detail-gallery">
-                        {{-- @foreach (['', '', '', '', ''] as $key => $item)
-                        <button @if ($key==0) class="active" @endif
-                            style="background-image: url(images/test-bell.jpg)"></button>
-                        @endforeach --}}
                     </div>
                 </div>
 
                 <div class="detail">
+
+                    <input type="hidden" name="product-price" value=""> 
                     <div class="block">
                         <h1 id="detail-title"></h1>
+
+                    <p id="detail-weight" class="weight"></p>
                         <p id="detail-description"></p>
                     </div>
-                    <p id="detail-weight" class="weight"></p>
                     <div id="detail-tags">
                     </div>
                     <div class="block">
@@ -90,23 +89,25 @@
                             @foreach ([
                             [
                             'title' => 'Без подставки',
+                            'price' => 0,
                             'image' => '',
                             ],
                             [
                             'title' => 'Дуб',
+                            'price' => 1300,
                             'image' => 'images/stand/oak.jpg',
                             ],
                             [
                             'title' => 'Орех',
+                            'price' => 1300,
                             'image' => 'images/stand/oak.jpg',
                             ],
                             ]
                             as $key => $item)
-                            <div class="desk-group">
-                                <input type="radio" name="desk" id="desk-{{ $key }}" @if ($key==0) checked @endif>
-                                <label for="desk-{{ $key }}" style="background-image: url({{ $item['image'] }})">
-                                    {{-- <span>{{ $item['title'] }}</span>
-                                    --}}
+                            <div class="stand-group">
+                                <input type="radio" name="stand" price="{{ $item['price'] }}" id="stand-{{ $key }}" @if ($key==0) checked @endif 
+                                onchange="changeStand('{{ $item['title'] }}')">
+                                <label for="stand-{{ $key }}" style="background-image: url({{ $item['image'] }})">
                                 </label>
                                 <p>{{ $item['title'] }}</p>
                             </div>
@@ -114,9 +115,13 @@
                             @endforeach
                         </div>
                     </div>
-                    <form class="block to-order">
+                    <form action="addToCart" method="POST" class="block to-order">
+                        @csrf
                         <div id="to-order-price"></div>
-                        <button>Заказать</button>
+                        <input type="hidden" name="stand" value="Без подставки" id="order-stand">
+                        <input type="hidden" name="orderSumm" value="">
+                        <input type="hidden" name="productId" value="">
+                        <input type="submit" value="Заказать">
                     </form>
                 </div>
             </div>
@@ -219,6 +224,37 @@
         })
     }
 
+    function shiftGallery(shift){
+        let imageElem = document.getElementById('image')
+        let activeImage=document.querySelector('.gallery-button.active')
+        let currentNum = Number(activeImage.getAttribute('num'))
+        let galleryLength = Number(activeImage.getAttribute('length'))
+        currentNum +=shift
+        if (currentNum >=0 && currentNum<galleryLength) {
+            activeImage.classList.remove('active')
+            activeImage = document.querySelector('.gallery-button[num="'+currentNum+'"]')
+            activeImage.classList.add('active')
+            document.getElementById('image').style.backgroundImage = activeImage.style.backgroundImage
+        }
+    }
+
+    function pressGallery(num){
+        let activeNum = Number(document.querySelector('.gallery-button.active').getAttribute('num'))
+        shiftGallery (num - activeNum)
+    }
+
+    function changeStand(deskName) {
+        document.getElementById('order-stand').value=deskName
+        summUpdate()
+    }
+
+    function summUpdate() {
+        let destSumm = Number(document.querySelector('input[name="stand"]:checked').getAttribute('price'))
+        let productSumm = Number(document.querySelector('input[name="product-price"]').value)
+         document.getElementById('to-order-price').innerHTML= productSumm+ destSumm
+         document.querySelector('input[name="orderSumm"]').value = productSumm+ destSumm
+    }
+
     function turnDetail() {
 
         let detailElem = document.querySelector('.modal-detail')
@@ -246,12 +282,17 @@
                 tagsHTML += '<li>' + item + '</li>'
             })
             document.getElementById('detail-tags').innerHTML = tagsHTML
-            document.getElementById('to-order-price').innerHTML=data.price
+            document.querySelector('input[name="product-price"]').value=data.price
             let imagesHTML=''
-            data.images.forEach(item=>{
-                imagesHTML+='<button style="background-image: url('+item+')"></button>'
-            })
+            for (key in data.images) {
+                imagesHTML+='<button class="gallery-button'+(key == 0 ? ' active' : '')+'" style="background-image: url('+data.images[key]+')" num='+key+' length='+data.images.length+' onclick="pressGallery('+key+')"></button>'
+            }
             document.getElementById('detail-gallery').innerHTML=imagesHTML
+            document.getElementById('image').style.backgroundImage='url('+data.images[0]+')'
+            document.querySelector('input[name="productId"]').value = data.id
+            summUpdate()
+            // Render 
+
             detailElem.classList.remove('disable')
         } else detailElem.classList.add('disable');
     }

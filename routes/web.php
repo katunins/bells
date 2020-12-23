@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WharehouseContoller;
 use Illuminate\Support\Facades\Auth;
@@ -68,5 +69,5 @@ Route::post('removeProduct', [WharehouseContoller::class, 'removeProduct']);
 Route::post('changeProductImagesArray', [WharehouseContoller::class, 'changeProductImagesArray']);
 Route::post('removeProductImage', [WharehouseContoller::class, 'removeProductImage']);
 
-
-
+Route::post('addToCart', [CartController::class, 'addToCart']);
+Route::get('/basket', [CartController::class, 'getCart']);

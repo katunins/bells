@@ -174,6 +174,7 @@ ul.pagination li a:hover:not(.active) {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  height: 700px;
 }
 
 .product-card {
@@ -226,9 +227,6 @@ ul.pagination li a:hover:not(.active) {
 }
 
 .description-block > .arrow-to-open {
-  /* position: relative;
-      top: -60px;
-      right: -145px; */
   font-weight: 100;
   font-size: 18px;
   margin-left: 10px;
@@ -247,7 +245,9 @@ ul.pagination li a:hover:not(.active) {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -280,6 +280,9 @@ ul.pagination li a:hover:not(.active) {
 
 .shop > .modal-detail .content .detail {
   margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .shop > .modal-detail .content .detail p#detail-description {
@@ -292,7 +295,7 @@ ul.pagination li a:hover:not(.active) {
   width: -moz-fit-content;
   width: fit-content;
   padding: 2px 15px;
-  background-color: #bbbbbb;
+  background-color: #e4e4e4;
   border-radius: 10px;
   font-size: 11px;
   margin: 5px 5px 0 0;
@@ -319,11 +322,11 @@ ul.pagination li a:hover:not(.active) {
   display: flex;
 }
 
-.shop > .modal-detail .content .detail .stand .desk-group input {
+.shop > .modal-detail .content .detail .stand .stand-group input {
   display: none;
 }
 
-.shop > .modal-detail .content .detail .stand .desk-group label {
+.shop > .modal-detail .content .detail .stand .stand-group label {
   border-radius: 7px;
   margin: 8px 5px 0 0;
   padding: 0px !important;
@@ -337,14 +340,14 @@ ul.pagination li a:hover:not(.active) {
   display: block;
 }
 
-.shop > .modal-detail .content .detail .stand .desk-group p {
+.shop > .modal-detail .content .detail .stand .stand-group p {
   width: var(--miniSize);
   text-align: center;
   color: black;
   font-size: 13px;
 }
 
-.shop > .modal-detail .content .detail .stand .desk-group input:checked + label:after {
+.shop > .modal-detail .content .detail .stand .stand-group input:checked + label:after {
   content: "";
   width: 35px;
   height: 35px;
@@ -369,7 +372,7 @@ ul.pagination li a:hover:not(.active) {
   margin-left: 5px;
 }
 
-.shop > .modal-detail .content .detail .to-order button {
+.shop > .modal-detail .content .detail .to-order input {
   width: 200px;
   padding: 10px;
   background: #865838;
@@ -377,6 +380,7 @@ ul.pagination li a:hover:not(.active) {
   color: white;
   font-size: 16px;
   border-radius: 20px;
+  border: none;
 }
 
 .shop > .modal-detail .content .image-block {
@@ -386,7 +390,7 @@ ul.pagination li a:hover:not(.active) {
   position: relative;
 }
 
-.shop > .modal-detail .content .image-block .image {
+.shop > .modal-detail .content .image-block #image {
   width: var(--size);
   height: var(--size);
   border: 1px solid #b3b3b3;

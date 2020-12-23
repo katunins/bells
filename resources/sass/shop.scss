@@ -175,6 +175,7 @@ ul.pagination li a:hover:not(.active) {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    height: 700px;
 }
 
 .product-card {
@@ -227,9 +228,6 @@ ul.pagination li a:hover:not(.active) {
 }
 
 .description-block>.arrow-to-open {
-    /* position: relative;
-        top: -60px;
-        right: -145px; */
     font-weight: 100;
     font-size: 18px;
     margin-left: 10px;
@@ -251,7 +249,7 @@ ul.pagination li a:hover:not(.active) {
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,6 +280,9 @@ ul.pagination li a:hover:not(.active) {
 
         .detail {
             margin-left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
 
             p#detail-description {
                 text-align: left;
@@ -291,7 +292,7 @@ ul.pagination li a:hover:not(.active) {
                 list-style: none;
                 width: fit-content;
                 padding: 2px 15px;
-                background-color: rgb(187, 187, 187);
+                background-color: #e4e4e4;
                 border-radius: 10px;
                 font-size: 11px;
                 margin: 5px 5px 0 0;
@@ -316,7 +317,7 @@ ul.pagination li a:hover:not(.active) {
             .stand {
                 display: flex;
 
-                .desk-group {
+                .stand-group {
                     input {
                         display: none;
                     }
@@ -340,8 +341,6 @@ ul.pagination li a:hover:not(.active) {
                     p {
                         width: var(--miniSize);
                         text-align: center;
-                        // position: relative;
-                        // top: 85px;
                         color: black;
                         font-size: 13px;
                     }
@@ -375,7 +374,7 @@ ul.pagination li a:hover:not(.active) {
                     content: "₽";
                     margin-left: 5px;
                 }
-                button {
+                input {
                     width: 200px;
                     padding: 10px;
                     background: rgb(134, 88, 56);
@@ -383,6 +382,7 @@ ul.pagination li a:hover:not(.active) {
                     color: white;
                     font-size: 16px;
                     border-radius: 20px;
+                    border: none;
                 }
             }
         }
@@ -391,7 +391,7 @@ ul.pagination li a:hover:not(.active) {
             width: fit-content;
             position: relative;
 
-            .image {
+            #image {
                 width: var(--size);
                 height: var(--size);
                 border: 1px solid rgb(179, 179, 179);
