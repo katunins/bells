@@ -1,6 +1,6 @@
 <div class="header">
     <div class="logo col-2">
-        <img src="images/logo.svg" alt="">
+        <a href="/"><img src="images/logo.svg" alt=""></a>
     </div>
     <div class="menu-block col-5">
         <?php 

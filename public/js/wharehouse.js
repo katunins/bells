@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/js/wharehouse.js */"./resources/js/wharehouse.js");
+module.exports = __webpack_require__(/*! /Users/katunin/Documents/bells/resources/js/wharehouse.js */"./resources/js/wharehouse.js");
 
 
 /***/ })

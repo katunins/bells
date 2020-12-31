@@ -1,31 +1,29 @@
-.shop {
+#shop {
     /* width: 100%; */
     padding: 50px 40px;
     position: relative;
-}
-
-.shop button {
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: #636363;
-}
-
-.shop-search {
-    width: 500px;
-    height: 48px;
-    font-size: 16px;
-    padding: 20px;
-    background-color: rgba(196, 196, 196, 0.3);
-    border: none;
-    border-radius: 5px;
-    background-image: url(/images/magnifier.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-position-x: 460px;
-    background-size: 20px;
-    outline: none;
+    button {
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        color: #636363;
+    }
+    .shop-search {
+        width: 500px;
+        height: 48px;
+        font-size: 16px;
+        padding: 20px;
+        background-color: rgba(196, 196, 196, 0.3);
+        border: none;
+        border-radius: 5px;
+        background-image: url(/images/magnifier.svg);
+        background-repeat: no-repeat;
+        background-position: right;
+        background-position-x: 460px;
+        background-size: 20px;
+        outline: none;
+    }
 }
 
 
@@ -50,38 +48,31 @@
     margin-bottom: 30px;
     list-style: none;
     padding: 0;
-
     span {
         border: 1px solid rgb(167, 167, 167);
         margin-right: 10px;
         padding: 2px 6px;
         border-radius: 3px;
-
         input::after {
             content: "₽";
         }
     }
-
     input {
         border: none;
         width: 80px;
         background: transparent;
         outline: none;
     }
-
     p {
         font-weight: 600;
         margin-top: 0;
     }
-
     li {
         margin-bottom: 3px;
     }
-
     li input[type="checkbox"] {
         display: none;
     }
-
     li label {
         color: #000;
         cursor: default;
@@ -94,7 +85,6 @@
         -khtml-user-select: none;
         -webkit-user-select: none;
     }
-
     li label::before {
         content: " ";
         color: #424040;
@@ -112,7 +102,6 @@
         vertical-align: middle;
         border-radius: 4px;
     }
-
     input:checked+label:before {
         content: "✓" !important;
     }
@@ -122,7 +111,6 @@
     /* margin-top: 10px; */
     padding: 0;
 }
-
 
 input:disabled+.filter-group>li label::before {
     background: #eee;
@@ -233,17 +221,14 @@ ul.pagination li a:hover:not(.active) {
     margin-left: 10px;
 }
 
-
-.shop>.disable {
+#shop>.disable {
     display: none !important;
     pointer-events: none;
 }
 
-.shop>.modal-detail {
-
+#shop>.modal-detail {
     --size: 500px;
     --miniSize: 80px;
-
     background-color: rgba(255, 255, 255, 0.795);
     position: absolute;
     top: 0px;
@@ -253,7 +238,6 @@ ul.pagination li a:hover:not(.active) {
     display: flex;
     justify-content: center;
     align-items: center;
-
     .content {
         width: 900px;
         height: 600px;
@@ -262,7 +246,6 @@ ul.pagination li a:hover:not(.active) {
         border-radius: 7px;
         filter: drop-shadow(3px 3px 4px rgb(218, 218, 218));
         position: relative;
-
         .close {
             position: absolute;
             top: 9px;
@@ -272,22 +255,18 @@ ul.pagination li a:hover:not(.active) {
             background: url('/images/close.svg') center no-repeat;
             background-size: cover;
         }
-
         .flex-block {
             display: flex;
             justify-content: space-between;
         }
-
         .detail {
             margin-left: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-
             p#detail-description {
                 text-align: left;
             }
-
             li {
                 list-style: none;
                 width: fit-content;
@@ -297,9 +276,7 @@ ul.pagination li a:hover:not(.active) {
                 font-size: 11px;
                 margin: 5px 5px 0 0;
                 display: inline-block;
-
-            }   
-
+            }
             .block {
                 display: block;
                 height: fit-content;
@@ -307,21 +284,16 @@ ul.pagination li a:hover:not(.active) {
                 margin: 0 auto;
                 text-align: center
             }
-
             ;
-
             h1 {
                 margin: 0;
             }
-
             .stand {
                 display: flex;
-
                 .stand-group {
                     input {
                         display: none;
                     }
-    
                     label {
                         border-radius: 7px;
                         margin: 8px 5px 0 0;
@@ -334,17 +306,13 @@ ul.pagination li a:hover:not(.active) {
                         border: 1px solid rgb(179, 179, 179);
                         position: relative;
                         display: block;
-    
-                        
                     }
-
                     p {
                         width: var(--miniSize);
                         text-align: center;
                         color: black;
                         font-size: 13px;
                     }
-    
                     input:checked+label:after {
                         content: "";
                         width: 35px;
@@ -359,17 +327,13 @@ ul.pagination li a:hover:not(.active) {
                         margin: 0 auto;
                     }
                 }
-                
             }
-
             .to-order {
-
                 #to-order-price {
                     font-size: 35px;
-                    font-weight: normal;   
+                    font-weight: normal;
                     text-align: center;
                 }
-    
                 #to-order-price::after {
                     content: "₽";
                     margin-left: 5px;
@@ -386,11 +350,9 @@ ul.pagination li a:hover:not(.active) {
                 }
             }
         }
-
         .image-block {
             width: fit-content;
             position: relative;
-
             #image {
                 width: var(--size);
                 height: var(--size);
@@ -400,12 +362,10 @@ ul.pagination li a:hover:not(.active) {
                 background-position: center;
                 background-repeat: no-repeat;
             }
-
             #detail-gallery {
                 width: fit-content;
                 height: 100px;
                 margin: 0 auto;
-
                 button {
                     border-radius: 7px;
                     margin: 8px 5px 0 0;
@@ -418,12 +378,10 @@ ul.pagination li a:hover:not(.active) {
                     border: 1px solid rgb(179, 179, 179);
                     opacity: 0.4;
                 }
-
                 button.active {
                     opacity: 1;
                 }
             }
-
             .arrows {
                 justify-content: space-between;
                 position: absolute;

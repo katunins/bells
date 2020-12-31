@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/shop.css">
 
-<div class="shop">
+<div id="shop">
     <div class="header-shop-block">
         <input class="shop-search" type="text" name="" id="top-search" placeholder="Подарок на юбилей ..."
             oninput="newSearch()">
@@ -74,11 +74,11 @@
 
                 <div class="detail">
 
-                    <input type="hidden" name="product-price" value=""> 
+                    <input type="hidden" name="product-price" value="">
                     <div class="block">
                         <h1 id="detail-title"></h1>
 
-                    <p id="detail-weight" class="weight"></p>
+                        <p id="detail-weight" class="weight"></p>
                         <p id="detail-description"></p>
                     </div>
                     <div id="detail-tags">
@@ -105,8 +105,8 @@
                             ]
                             as $key => $item)
                             <div class="stand-group">
-                                <input type="radio" name="stand" price="{{ $item['price'] }}" id="stand-{{ $key }}" @if ($key==0) checked @endif 
-                                onchange="changeStand('{{ $item['title'] }}')">
+                                <input type="radio" name="stand" price="{{ $item['price'] }}" id="stand-{{ $key }}"
+                                    @if($key==0) checked @endif onchange="changeStand('{{ $item['title'] }}')">
                                 <label for="stand-{{ $key }}" style="background-image: url({{ $item['image'] }})">
                                 </label>
                                 <p>{{ $item['title'] }}</p>

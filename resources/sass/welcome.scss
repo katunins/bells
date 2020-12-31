@@ -29,6 +29,9 @@ p {
 .todo-button {
     width: calc(var(--one-column)*2);
     height: 37px;
+    border: none;
+    cursor: pointer;
+    outline: none;
     background: linear-gradient(104.1deg, #826A5B 46.6%, #89796B 72.5%);
     /* padding: 10 36px; */
     border-radius: 50px;

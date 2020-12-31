@@ -16,10 +16,12 @@
                 <h1>Подарочный настольный колокол с быстрой доставкой</h1>
                 <p>Литейная мастерская колоколов из натуральной бронзы доставит оригинальный подарок с вашим именем или
                     ликом святого. Найди свой колокол от 5 990 руб!</p>
-                <a href="">
-                    <div class="todo-button">Выбрать колокол</div>
-                </a>
+                <button class="todo-button"
+                    onclick="document.getElementById('shop').scrollIntoView({block: 'start', behavior: 'smooth'})">
+                    Выбрать
+                    колокол
             </div>
+            </button>
         </div>
         <div class="col-6 flex-vert-center">
             <div class="col-5 block-to-center">
