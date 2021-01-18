@@ -1,0 +1,126 @@
+.hide {
+  display: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container a {
+  border: 1px solid #cecece;
+  /* background: white; */
+  padding: 10px 30px;
+  border-radius: 10px;
+  filter: drop-shadow(2px 4px 3px #cfcfcf);
+  background-color: white;
+}
+
+.basket-card {
+  display: flex;
+  border: 1px solid #bdbdbd;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  position: relative;
+  margin-bottom: 20px;
+  filter: drop-shadow(2px 3px 4px #d6d6d6);
+}
+
+.basket-card button {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid grey;
+  padding: 0 !important;
+  line-height: 0;
+  text-align: center;
+  outline: none;
+}
+
+.basket-card button.remove {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.basket-card .title-image {
+  width: 240px;
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.basket-card .data-group {
+  max-width: 360px;
+}
+
+.basket-card .data-group p {
+  font-size: 14px;
+}
+
+.basket-card .param-group {
+  text-align: center;
+  margin: auto 60px 25px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.basket-card .param-group .big-number {
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+.basket-card .param-group button {
+  margin: 0px 5px 0 5px;
+  font-size: 18px;
+}
+
+.delivery-block,
+.price-block {
+  display: flex;
+}
+
+.delivery-block input,
+.price-block input {
+  display: none;
+}
+
+.delivery-block label,
+.price-block label {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 65px;
+  border: 1px solid #bdbdbd;
+  padding: 18px 25px;
+  background: white;
+  border-radius: 8px;
+  position: relative;
+  filter: drop-shadow(2px 3px 4px #d6d6d6);
+  margin: auto 10px 0 0;
+  opacity: 0.7;
+}
+
+.delivery-block h5,
+.price-block h5 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.delivery-block p,
+.price-block p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.delivery-block input:checked + label,
+.price-block input:checked + label {
+  opacity: 1;
+  border-bottom: 5px solid #8c4e39;
+  border-top: 5px solid #8c4e39;
+}
+

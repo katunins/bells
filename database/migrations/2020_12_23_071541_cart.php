@@ -19,6 +19,7 @@ class Cart extends Migration
             $table->string('productId');
             $table->string('stand');
             $table->integer('orderSumm');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

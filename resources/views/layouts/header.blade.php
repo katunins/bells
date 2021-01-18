@@ -1,3 +1,4 @@
+
 <div class="header">
     <div class="logo col-2">
         <a href="/"><img src="images/logo.svg" alt=""></a>
@@ -22,11 +23,11 @@
         <img src="images/phone.svg" alt="">
         <a href="">+7 900 800-22-05</a>
     </div>
-    <div class="basket-block col-1">
+    <a class="basket-block col-1" href="/basket">
         <img src="images/basket.svg" alt="">
-        <span id="header-basket-summ">1 262</span>р
+        <span id="header-basket-summ">{{ number_format(App\Http\Controllers\CartController::getBasketSumm(), 0, '', ' ') }}</span>р
         <button id="basket-arrow">
             <img src="images/basket-arrow.svg" alt="">
         </button>
-    </div>
+    </a>
 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Products;
 
 class CartController extends Controller
 {
@@ -18,6 +19,7 @@ class CartController extends Controller
             'userToken'=>$request->_token,
             'productId'=>$request->productId,
             'orderSumm'=>$request->orderSumm,
+            'quantity'=>1,
             'created_at' => Carbon::now(),
             'stand'=>$request->stand
         ]);
@@ -26,6 +28,26 @@ class CartController extends Controller
 
     static function getCart()
     {
-        return View('basket')->with('cart', DB::table('cart')->where('userToken', session()->get('_token'))->get());
+        $collection = DB::table('cart')->where('userToken', session()->get('_token'))->get();
+        if ($collection->count() > 0) {
+            
+            $collection->each(function ($item) {
+                // dd (Products::whereId($item->id));
+               $item->productParams = Products::whereId($item->productId)->first()->getAttributes();
+            });
+        }
+        return View('basket')->with('collection', $collection);
+    }
+
+    static function getBasketSumm()
+    {
+        $data = DB::table('cart')->where('userToken', session()->get('_token'))->get();
+        $summ = 0;
+        if ($data) {
+            foreach ($data as $item) {
+                $summ+=$item->orderSumm*$item->quantity;
+            }
+        }
+        return $summ;
     }
 }

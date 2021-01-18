@@ -18,6 +18,7 @@ mix
     .js('resources/js/general.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css/app.css')
     .sass('resources/sass/wharehouse.scss', 'public/css/wharehouse.css')
+    .sass('resources/sass/basket.scss', 'public/css/basket.css')
     .sass('resources/sass/admin.scss', 'public/css/admin.css')
     .sass('resources/sass/header.scss', 'public/css/header.css')
     .sass('resources/sass/supermodal.scss', 'public/css/supermodal.css')
