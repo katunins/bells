@@ -50,4 +50,12 @@ class CartController extends Controller
         }
         return $summ;
     }
+
+    public function changeCartProduct(Request $request)
+    {
+        $item = Products::whereId($request->id)->first();
+        $item->quantity=3;
+        $item->save();
+        return response()->json($item);
+    }
 }

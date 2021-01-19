@@ -129,10 +129,7 @@
     }
 }
 
-#orderSumm {
-    font-size: 35px;
-    margin-top: 20px;
-}
+
 
 #forpvz {
     width: 100%;
@@ -153,4 +150,25 @@ input[type="tel"]{
     letter-spacing: 3px;
     width: 250px;
     height: 40px;
+    padding: 20px;
+}
+.toOrder{
+    display: flex;
+    align-items: flex-end;
+
+    button {
+        width: 200px;
+        height: 40px;
+        font-size: 16px;
+        background: #826A5B;
+        color: white;
+        border: navajowhite;
+        border-radius: 8px;
+    }
+
+    #orderSumm {
+        font-size: 35px;
+        margin-top: 20px;
+        margin-left: 30px;
+    }
 }

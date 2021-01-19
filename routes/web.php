@@ -71,3 +71,4 @@ Route::post('removeProductImage', [WharehouseContoller::class, 'removeProductIma
 
 Route::post('addToCart', [CartController::class, 'addToCart']);
 Route::get('/basket', [CartController::class, 'getCart']);
+Route::post('changeCartProduct', [CartController::class, 'changeCartProduct']);

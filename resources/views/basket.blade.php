@@ -39,7 +39,7 @@
   <div class="cart-block">
     @foreach ($collection as $item)
     <div class="basket-card" price={{ $item->productParams['price'] }} quantity={{ $item->quantity }}>
-      <button class="remove" onclick="removeGood({{ $item->id }})">x</button>
+      <button class="remove" onclick="changeQuantity({{ $item->id }}, 0)">x</button>
       <div class="title-image" style="background-image: url({{ json_decode($item->productParams['images'])[0] }});">
       </div>
       <div class="data-group">
@@ -55,8 +55,8 @@
       <div class="param-group">
         <div class="big-number"><span>{{ $item->quantity }}</span> шт</div>
         <p>
-          <button onclick="changeQuantity({{ $item->id, -1 }})">-</button>
-          <button onclick="changeQuantity({{ $item->id, 1 }})">+</button>
+          <button onclick="changeQuantity({{ $item->id}}, -1)">-</button>
+          <button onclick="changeQuantity({{ $item->id}}, 1)">+</button>
         </p>
         <div class="big-number">{{ number_format($item->productParams['price'], 0, '', ' ') }} ₽</div>
       </div>
@@ -97,15 +97,19 @@
   </form>
   <div id="forpvz" class="hide"></div>
   <div id="deliveryInfo"></div>
-  
+
   <div class="tel-block">
     <h2>Введите номер телефона</h2>
-  <input type="tel" name="tel" placeholder="+7" id="tel">
+    <input type="tel" name="tel" placeholder="+7" id="tel">
   </div>
 
 
-  <div id="orderSumm"></div>
-  
+  <div class="toOrder">
+
+    <button id="toOrderButton" class="hide">Заказать</button>
+    <div id="orderSumm"></div>
+  </div>
+
   @else
   {{-- Корзина пустая --}}
   <h1>Корзина пустая</h1>
@@ -117,7 +121,16 @@
 @endsection
 
 <script type="text/javascript">
-function setCursorPosition (pos, elem) {
+  function changeQuantity(id, direction) {
+    ajax ('changeCartProduct',{
+        id: id,
+        direction: direction
+      }, function(result){
+      console.log (result)
+    })
+  }
+
+  function setCursorPosition (pos, elem) {
   elem.focus ();
   if (elem.setSelectionRange) elem.setSelectionRange (pos, pos);
   else if (elem.createTextRange) {
@@ -172,14 +185,12 @@ function setCursorPosition (pos, elem) {
                 weight: 2
             }],
             onChooseProfile: function(wat) {
-              // console.log('Выбрана доставка курьером ', wat);
               cdekSelected(wat)
             },
             
         });
         ourWidjet.binders.add(function(wat){
           cdekSelected(wat)
-          // console.log('Выбрана доставка на склад ', wat);
         }, 'onChoose');
       }
     }
@@ -192,6 +203,7 @@ function setCursorPosition (pos, elem) {
     document.querySelector('input[name="basketPrice"]').value=basketPrice
     let orderSumm = Number(basketPrice)+Number(document.querySelector('input[name="deliveryPrice"]').value)
     document.getElementById('orderSumm').innerHTML = orderSumm.toLocaleString()+' ₽'
+    document.getElementById('toOrderButton').className=''
   }
   
   function deliveryChecked() {
