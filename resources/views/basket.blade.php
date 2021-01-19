@@ -83,19 +83,29 @@
         <p>В ближайший пункт выдачи или курьером домой</p>
       </label>
 
-      
+
     </div>
 
-    <div class="price-block">
-      <h2>Выберете вариант оплаты</h2>
-      <h3>1100</h3>
-    </div>
+    {{-- <div class="price-block">
+        <h2>Выберете вариант оплаты</h2>
+        
+      </div> --}}
 
     <input type="hidden" name="deliveryPrice" value=0>
     <input type="hidden" name="basketPrice" value=0>
 
   </form>
-  <div id="forpvz" class="hide" style="width:100%; height:600px;"></div>
+  <div id="forpvz" class="hide"></div>
+  <div id="deliveryInfo"></div>
+  
+  <div class="tel-block">
+    <h2>Введите номер телефона</h2>
+  <input type="tel" name="tel" placeholder="+7" id="tel">
+  </div>
+
+
+  <div id="orderSumm"></div>
+  
   @else
   {{-- Корзина пустая --}}
   <h1>Корзина пустая</h1>
@@ -107,51 +117,103 @@
 @endsection
 
 <script type="text/javascript">
-  var ourWidjet = new ISDEKWidjet ({
-      defaultCity: 'Нижний Новгород', //какой город отображается по умолчанию
-      cityFrom: 'Воронеж', // из какого города будет идти доставка
-      country: 'Россия', // можно выбрать страну, для которой отображать список ПВЗ
-      link: 'forpvz', // id эл=емента страницы, в который будет вписан виджет
-      path: '/cdek/widget/scripts/', //директория с библиотеками
-      servicepath: '/cdek/service.php', //ссылка на файл service.php на вашем сайте
-      hidedress: true,
-      hidecash: true,
-      // hidedelt: true,
-      detailAddress: true,
-      // popup: true,
-      goods: [{
-           length: 20,
-           width: 20,
-           height: 15,
-           weight: 2
-       }],
-
+function setCursorPosition (pos, elem) {
+  elem.focus ();
+  if (elem.setSelectionRange) elem.setSelectionRange (pos, pos);
+  else if (elem.createTextRange) {
+    var range = elem.createTextRange ();
+    range.collapse (true);
+    range.moveEnd ('character', pos);
+    range.moveStart ('character', pos);
+    range.select ();
+  }
+}
+  function mask (event) {
+  var matrix = '+7 (___) ___-____',
+    i = 0,
+    def = matrix.replace (/\D/g, ''),
+    val = this.value.replace (/\D/g, '');
+  if (def.length >= val.length) val = def;
+  this.value = matrix.replace (/./g, function (a) {
+    return /[_\d]/.test (a) && i < val.length
+      ? val.charAt (i++)
+      : i >= val.length ? '' : a;
   });
+  if (event.type == 'blur') {
+    if (this.value.length == 2) this.value = '';
+  } else setCursorPosition (this.value.length, this);
+}
+  
+  function cdekSelected (wat) {
+    document.getElementById('deliveryInfo').innerHTML = 'Доставка: ' + (wat.id=='courier'?'курьером':'пункт выдачи заказов '+wat.PVZ.Address)+ ', '+'<b>'+wat.price+' руб.</b> '+'<button onclick="document.getElementById(`forpvz`).className=``">изменить</button>'
+    document.getElementById('forpvz').className='hide'
+    document.querySelector('input[name="deliveryPrice"]').value=wat.price
+    priceRecalc()
+  }
 
+  function turnOnCdek() {
+      if (typeof ourWidjet === 'undefined') {
+        window.ourWidjet = new ISDEKWidjet ({
+            defaultCity: 'Нижний Новгород', //какой город отображается по умолчанию
+            cityFrom: 'Воронеж', // из какого города будет идти доставка
+            country: 'Россия', // можно выбрать страну, для которой отображать список ПВЗ
+            link: 'forpvz', // id эл=емента страницы, в который будет вписан виджет
+            path: '/cdek/widget/scripts/', //директория с библиотеками
+            servicepath: '/cdek/service.php', //ссылка на файл service.php на вашем сайте
+            hidedress: true,
+            hidecash: true,
+            // hidedelt: true,
+            detailAddress: true,
+            // popup: true,
+            goods: [{
+                length: 20,
+                width: 20,
+                height: 15,
+                weight: 2
+            }],
+            onChooseProfile: function(wat) {
+              // console.log('Выбрана доставка курьером ', wat);
+              cdekSelected(wat)
+            },
+            
+        });
+        ourWidjet.binders.add(function(wat){
+          cdekSelected(wat)
+          // console.log('Выбрана доставка на склад ', wat);
+        }, 'onChoose');
+      }
+    }
+  
   function priceRecalc () {
     let basketPrice = 0
     document.querySelectorAll('.basket-card').forEach(el=>{
       basketPrice += el.getAttribute('price')*el.getAttribute('quantity')
     })
-    (basketPrice)
-
+    document.querySelector('input[name="basketPrice"]').value=basketPrice
+    let orderSumm = Number(basketPrice)+Number(document.querySelector('input[name="deliveryPrice"]').value)
+    document.getElementById('orderSumm').innerHTML = orderSumm.toLocaleString()+' ₽'
   }
   
   function deliveryChecked() {
     let elem = document.getElementById('forpvz')
-    if (event.target.value=='cdek') elem.className=''; else elem.className='hide';
+    if (event.target.value=='cdek') {
+        elem.className=''
+        turnOnCdek()
+      } else {
+        elem.className='hide'
+        document.getElementById('deliveryInfo').innerHTML=''
+        document.querySelector('input[name="deliveryPrice"]').value=0
+        priceRecalc()
+        }
+
     priceRecalc()
   }
 
-  // document.addEventListener('DOMContentLoaded', function (){
-  //   document.querySelectorAll('input[name="delivery"]').forEach(el=>{
-  //     el.onchange = () => {
-  //       let elem = document.getElementById('forpvz')
-  //       if (el.value=='cdek') {
-  //         if (elem.classList.contains ('hide')) elem.classList.remove ('hide'); 
-  //       } else elem.classList.add ('hide');
-  //     }  
-  //   })
-  // })
+  document.addEventListener ('DOMContentLoaded', function () {
+  const elems = document.getElementById ('tel');
+  elems.addEventListener ('input', mask);
+  elems.addEventListener ('focus', mask);
+  elems.addEventListener ('blur', mask);
+  })
   
 </script>
