@@ -123,7 +123,7 @@ window.ajax = function (url, data) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/pavelkatuninhome/Documents/bells/resources/js/general.js */"./resources/js/general.js");
+module.exports = __webpack_require__(/*! /Users/katunin/Documents/bells/resources/js/general.js */"./resources/js/general.js");
 
 
 /***/ })

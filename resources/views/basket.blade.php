@@ -38,7 +38,7 @@
   <h1>Корзина</h1>
   <div class="cart-block">
     @foreach ($collection as $item)
-    <div class="basket-card" price={{ $item->productParams['price'] }} quantity={{ $item->quantity }}>
+    <div class="basket-card" price={{ $item->orderSumm }} quantity={{ $item->quantity }} data-id={{ $item->id }}>
       <button class="remove" onclick="changeQuantity({{ $item->id }}, 0)">x</button>
       <div class="title-image" style="background-image: url({{ json_decode($item->productParams['images'])[0] }});">
       </div>
@@ -48,17 +48,16 @@
         <p>Подставка: {{ $item->stand }}</p>
         <p>Вес: {{ $item->productParams['weight'] }} кг.</p>
         <br>
-        {{-- <p>Количество: <span>{{ $item->quantity }}</span> шт.</p> --}}
 
 
       </div>
       <div class="param-group">
-        <div class="big-number"><span>{{ $item->quantity }}</span> шт</div>
+        <div class="big-number"><span class="big-quantity">{{ $item->quantity }}</span> шт</div>
         <p>
           <button onclick="changeQuantity({{ $item->id}}, -1)">-</button>
           <button onclick="changeQuantity({{ $item->id}}, 1)">+</button>
         </p>
-        <div class="big-number">{{ number_format($item->productParams['price'], 0, '', ' ') }} ₽</div>
+        <div class="big-number">{{ number_format($item->orderSumm, 0, '', ' ') }} ₽</div>
       </div>
     </div>
     {{-- @dump($item) --}}
@@ -126,7 +125,17 @@
         id: id,
         direction: direction
       }, function(result){
-      console.log (result)
+      if (result !==false) {
+        let basketCard = document.querySelector('.basket-card[data-id="'+id+'"]')
+        if (result==0) {
+          basketCard.parentNode.removeChild(basketCard)
+          if (document.querySelectorAll('.basket-card').length == 0) location = location
+        } else {
+          basketCard.setAttribute('quantity', result)
+          basketCard.querySelector('.big-quantity').innerHTML = result
+        }
+        priceRecalc()
+      }
     })
   }
 

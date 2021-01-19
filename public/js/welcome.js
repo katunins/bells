@@ -106,7 +106,7 @@ function shiftTopProducts(direction) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/pavelkatuninhome/Documents/bells/resources/js/welcome.js */"./resources/js/welcome.js");
+module.exports = __webpack_require__(/*! /Users/katunin/Documents/bells/resources/js/welcome.js */"./resources/js/welcome.js");
 
 
 /***/ })
