@@ -221,11 +221,11 @@
     priceRecalc()
   }
 
-  document.addEventListener ('DOMContentLoaded', function () {
-  const elems = document.getElementById ('tel');
-  elems.addEventListener ('input', mask);
-  elems.addEventListener ('focus', mask);
-  elems.addEventListener ('blur', mask);
-  })
+    document.addEventListener ('DOMContentLoaded', function () {
+    const elems = document.getElementById ('tel');
+    elems.addEventListener ('input', mask);
+    elems.addEventListener ('focus', mask);
+    elems.addEventListener ('blur', mask);
+    })
   
 </script>
