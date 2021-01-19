@@ -53,9 +53,9 @@ class CartController extends Controller
 
     public function changeCartProduct(Request $request)
     {
-        $item = Products::whereId($request->id)->first();
-        $item->quantity=3;
-        $item->save();
-        return response()->json($item);
+        
+        Products::where('id',$request->id)->update(['quantity' => 2]);
+        // $item->save();
+        return response()->json([]);
     }
 }
