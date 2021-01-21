@@ -23,7 +23,7 @@
                 <h3>Кабинет администратора</h3>
             </div>
             <div class="menu">
-                <li><a href="/admin">Главная</a></li>
+                <li><a href="/">На сайт</a></li>
                 <li><a href="/wharehouse">Склад</a></li>
                 <li><a href="/newProduct">Добавить товар</a></li>
                 <li><a href="/changePass">Изменить пароль</a></li>

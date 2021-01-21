@@ -178,35 +178,36 @@ ul.pagination li a:hover:not(.active) {
 }
 
 .product-card {
+  position: relative;
   background-color: white;
   width: 250px;
-  height: 350px;
+  height: 385px;
   margin: 0 14px 20px 0;
   border-radius: 7px;
   filter: drop-shadow(3px 4px 6px rgba(0, 0, 0, 0.2));
 }
 
-.product-card > .back-img {
-  width: 70%;
-  height: 60%;
+.product-card .back-img {
   /* background-color: greenyellow; */
+  width: 200px;
+  height: 265px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
   margin: 0 auto;
 }
 
-.description-block > .weight {
-  position: relative;
-  top: -315px;
+.description-block {
+  width: 80%;
+  margin: -4px auto 0;
+}
+
+.description-block .weight {
+  position: absolute;
+  top: 10px;
   width: 36px;
   text-align: center;
   padding: 2px 5px;
-}
-
-.description-block {
-  width: 80%;
-  margin: 10px auto 0;
 }
 
 .description-block > .title {

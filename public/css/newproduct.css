@@ -81,8 +81,8 @@ button {
   border-radius: 10px;
   margin: 5px;
   width: var(--imageSize);
-  height: var(--imageSize);
-  background-position: center;
+  height: calc(var(--imageSize)*1.3);
+  background-position: bottom 0px center;
   background-size: cover;
   background-repeat: no-repeat;
 }
