@@ -49,15 +49,15 @@
                     <div class="best-cards-container" style="left: 0">
                         @foreach ($topProduct as $item)
                         <div class="best-card">
-                            <a href="{{ $item['link'] }}">
-                                <div class="back-bell" style="background-image: url({{ $item['image'] }})">
+                            <a href="{{ $item->link }}">
+                                <div class="back-bell" style="background-image: url({{ $item->image }})">
                                     <div class="name-price">
-                                        <div class="name">{{ $item['name'] }}</div>
-                                        <div class="price">{{ number_format($item['price'], 0, "", " ") }} р
+                                        <div class="name">{{ $item->name }}</div>
+                                        <div class="price">{{ $item->pricetext}}
                                             <img src="images/thin-arrow.svg" alt="">
                                         </div>
                                     </div>
-                                    <div class="weight">{{ $item['weight'] }}кг</div>
+                                    <div class="weight">{{ $item->weight }}кг</div>
                                 </div>
                             </a>
                         </div>

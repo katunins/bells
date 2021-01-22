@@ -2,7 +2,6 @@
     /* width: 100%; */
     padding: 50px 40px;
     position: relative;
-
     button {
         background: transparent;
         border: none;
@@ -10,7 +9,6 @@
         cursor: pointer;
         color: #636363;
     }
-
     .shop-search {
         width: 500px;
         height: 48px;
@@ -50,38 +48,31 @@
     margin-bottom: 30px;
     list-style: none;
     padding: 0;
-
     span {
         border: 1px solid rgb(167, 167, 167);
         margin-right: 10px;
         padding: 2px 6px;
         border-radius: 3px;
-
         input::after {
             content: "₽";
         }
     }
-
     input {
         border: none;
         width: 80px;
         background: transparent;
         outline: none;
     }
-
     p {
         font-weight: 600;
         margin-top: 0;
     }
-
     li {
         margin-bottom: 3px;
     }
-
     li input[type="checkbox"] {
         display: none;
     }
-
     li label {
         color: #000;
         cursor: default;
@@ -94,7 +85,6 @@
         -khtml-user-select: none;
         -webkit-user-select: none;
     }
-
     li label::before {
         content: " ";
         color: #424040;
@@ -112,7 +102,6 @@
         vertical-align: middle;
         border-radius: 4px;
     }
-
     input:checked+label:before {
         content: "✓" !important;
     }
@@ -186,7 +175,6 @@ ul.pagination li a:hover:not(.active) {
     margin: 0 14px 20px 0;
     border-radius: 7px;
     filter: drop-shadow(3px 4px 6px rgba(0, 0, 0, 0.2));
-
     .back-img {
         // width: 70%;
         // width: 85%;
@@ -201,12 +189,10 @@ ul.pagination li a:hover:not(.active) {
     }
 }
 
-
 .description-block {
     width: 80%;
     // margin: 10px auto 0;
     margin: -4px auto 0;
-
     .weight {
         // position: relative;
         position: absolute;
@@ -258,7 +244,6 @@ ul.pagination li a:hover:not(.active) {
     display: flex;
     justify-content: center;
     align-items: center;
-
     .content {
         width: 900px;
         height: 600px;
@@ -267,7 +252,6 @@ ul.pagination li a:hover:not(.active) {
         border-radius: 7px;
         filter: drop-shadow(3px 3px 4px rgb(218, 218, 218));
         position: relative;
-
         .close {
             position: absolute;
             top: 9px;
@@ -277,22 +261,18 @@ ul.pagination li a:hover:not(.active) {
             background: url('/images/close.svg') center no-repeat;
             background-size: cover;
         }
-
         .flex-block {
             display: flex;
             justify-content: space-between;
         }
-
         .detail {
             margin-left: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-
             p#detail-description {
                 text-align: left;
             }
-
             li {
                 list-style: none;
                 width: fit-content;
@@ -303,7 +283,6 @@ ul.pagination li a:hover:not(.active) {
                 margin: 5px 5px 0 0;
                 display: inline-block;
             }
-
             .block {
                 display: block;
                 height: fit-content;
@@ -311,21 +290,16 @@ ul.pagination li a:hover:not(.active) {
                 margin: 0 auto;
                 text-align: center
             }
-
             ;
-
             h1 {
                 margin: 0;
             }
-
             .stand {
                 display: flex;
-
                 .stand-group {
                     input {
                         display: none;
                     }
-
                     label {
                         border-radius: 7px;
                         margin: 8px 5px 0 0;
@@ -339,14 +313,12 @@ ul.pagination li a:hover:not(.active) {
                         position: relative;
                         display: block;
                     }
-
                     p {
                         width: var(--miniSize);
                         text-align: center;
                         color: black;
                         font-size: 13px;
                     }
-
                     input:checked+label:after {
                         content: "";
                         width: 35px;
@@ -362,19 +334,16 @@ ul.pagination li a:hover:not(.active) {
                     }
                 }
             }
-
             .to-order {
                 #to-order-price {
                     font-size: 35px;
                     font-weight: normal;
                     text-align: center;
                 }
-
                 #to-order-price::after {
                     content: "₽";
                     margin-left: 5px;
                 }
-
                 input {
                     width: 200px;
                     padding: 10px;
@@ -387,26 +356,23 @@ ul.pagination li a:hover:not(.active) {
                 }
             }
         }
-
         .image-block {
             width: fit-content;
             position: relative;
-
             #image {
                 width: var(--size);
                 height: var(--size);
                 border: 1px solid rgb(179, 179, 179);
                 border-radius: 7px;
-                background-size: cover;
+                // background-size: cover;
+                background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
             }
-
             #detail-gallery {
                 width: fit-content;
                 height: 100px;
                 margin: 0 auto;
-
                 button {
                     border-radius: 7px;
                     margin: 8px 5px 0 0;
@@ -419,12 +385,11 @@ ul.pagination li a:hover:not(.active) {
                     border: 1px solid rgb(179, 179, 179);
                     opacity: 0.4;
                 }
-
                 button.active {
                     opacity: 1;
+                    background-size: contain;
                 }
             }
-
             .arrows {
                 justify-content: space-between;
                 position: absolute;

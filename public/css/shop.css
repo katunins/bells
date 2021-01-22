@@ -396,7 +396,7 @@ ul.pagination li a:hover:not(.active) {
   height: var(--size);
   border: 1px solid #b3b3b3;
   border-radius: 7px;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -424,6 +424,7 @@ ul.pagination li a:hover:not(.active) {
 
 #shop > .modal-detail .content .image-block #detail-gallery button.active {
   opacity: 1;
+  background-size: contain;
 }
 
 #shop > .modal-detail .content .image-block .arrows {

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WharehouseContoller;
+use App\Http\Controllers\TopProductsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // return view('welcome')->with('shop', ProductController::getProductToPage());
     return view('welcome')
-    ->with('topProduct', WharehouseContoller::getTopProducts())
-    ->with('filter', WharehouseContoller::getHelpTags())
-    ->with('maxFilterList', 10);
+        ->with('topProduct', TopProductsController::getTopProducts())
+        ->with('filter', WharehouseContoller::getHelpTags())
+        ->with('maxFilterList', 10);
 });
 
 Route::post('changeFilter', [ProductController::class, 'changeFilter']);
@@ -53,7 +54,7 @@ Route::get('/wharehouse', function () {
 Route::post('/getWharehouse', [WharehouseContoller::class, 'getWharehouseScreen']);
 Route::post('/changeWharehousePage', [WharehouseContoller::class, 'changeWharehousePage']);
 
-Route::get('/newProduct/{id?}', function ($id=null) {
+Route::get('/newProduct/{id?}', function ($id = null) {
     $productData = WharehouseContoller::getProductArr($id);
     if (Auth::check()) {
         if ($id && $productData) return View('admin.newproduct')->with('productEdit', true)->with('productData', $productData)->with('filter', WharehouseContoller::getHelpTags());
@@ -63,11 +64,33 @@ Route::get('/newProduct/{id?}', function ($id=null) {
     }
 });
 
+Route::get('/topProducts', function () {
+    if (Auth::check()) {
+        return View('admin.topproducts')->with('topProduct', TopProductsController::getTopProducts());
+    } else {
+        return redirect('/admin');
+    }
+});
+
+Route::get('/newTopProduct/{id?}', function ($id = null) {
+    if (Auth::check()) {
+        return View('admin.newtopproduct')->with('topProductEdit', $id ? TopProductsController::getOneTopProduct($id):null);
+    } else {
+        return redirect('/admin');
+    }
+});
+
+
 Route::post('getNewProduct', [WharehouseContoller::class, 'getNewProduct'])->name('getNewProduct');
 Route::post('changeProductQuantity', [WharehouseContoller::class, 'changeProductQuantity']);
 Route::post('removeProduct', [WharehouseContoller::class, 'removeProduct']);
 Route::post('changeProductImagesArray', [WharehouseContoller::class, 'changeProductImagesArray']);
 Route::post('removeProductImage', [WharehouseContoller::class, 'removeProductImage']);
+
+
+Route::post('updateTopProduct', [TopProductsController::class, 'updateTopProduct'])->name('updateTopProduct');
+Route::post('changeTopCard', [TopProductsController::class, 'changeTopCard']);
+Route::post('shiftTopCard', [TopProductsController::class, 'shiftTopCard']);
 
 Route::post('addToCart', [CartController::class, 'addToCart']);
 Route::get('/basket', [CartController::class, 'getCart']);

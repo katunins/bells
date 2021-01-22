@@ -21,6 +21,7 @@ mix
     .sass('resources/sass/basket.scss', 'public/css/basket.css')
     .sass('resources/sass/admin.scss', 'public/css/admin.css')
     .sass('resources/sass/header.scss', 'public/css/header.css')
+    .sass('resources/sass/topproducts.scss', 'public/css/topproducts.css')
     .sass('resources/sass/supermodal.scss', 'public/css/supermodal.css')
     .sass('resources/sass/shop.scss', 'public/css/shop.css')
     .sass('resources/sass/newproduct.scss', 'public/css/newproduct.css')

@@ -285,17 +285,4 @@ class WharehouseContoller extends Controller
 
         return  $result;
     }
-
-    static function getTopProducts()
-    {
-        return [
-            [
-                'image' => 'images/test-bell.jpg',
-                'link' => '',
-                'name' => 'Колокол',
-                'price' => 5990,
-                'weight' => 0.35,
-            ]
-        ];
-    }
 }

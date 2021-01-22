@@ -8,7 +8,6 @@
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-
     a {
         border: 1px solid rgb(206, 206, 206);
         /* background: white; */
@@ -21,8 +20,6 @@
     }
 }
 
-
-
 .basket-card {
     display: flex;
     border: 1px solid rgb(189, 189, 189);
@@ -32,8 +29,6 @@
     position: relative;
     margin-bottom: 20px;
     filter: drop-shadow(2px 3px 4px rgb(214, 214, 214));
-
-
     button {
         width: 30px;
         height: 30px;
@@ -44,42 +39,36 @@
         text-align: center;
         outline: none;
     }
-
     button.remove {
         position: absolute;
         right: 10px;
         top: 10px;
     }
-
     .title-image {
         width: 240px;
         height: 240px;
-        background-size: cover;
+        background-size: contain;
+        // background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
-
     .data-group {
         max-width: 360px;
-
         p {
             font-size: 14px;
             // margin: 0;
         }
     }
-
     .param-group {
         text-align: center;
         margin: auto 60px 25px auto;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-
         .big-number {
             margin-top: 20px;
             font-size: 22px;
         }
-
         button {
             margin: 0px 5px 0 5px;
             font-size: 18px;
@@ -87,15 +76,13 @@
     }
 }
 
-.delivery-block, .price-block {
-
+.delivery-block,
+.price-block {
     display: flex;
     // justify-content: center;
-
     input {
         display: none;
     }
-
     label {
         display: flex;
         flex-direction: column;
@@ -110,26 +97,21 @@
         margin: auto 10px 0 0;
         opacity: 0.7;
     }
-
     h5 {
         margin: 0 0 10px 0;
         // font-weight: normal;
         font-size: 16px;
     }
-
     p {
         margin: 0;
         font-size: 14px;
     }
-
-    input:checked + label {
+    input:checked+label {
         opacity: 1;
         border-bottom: 5px solid #8c4e39;
         border-top: 5px solid #8c4e39;
     }
 }
-
-
 
 #forpvz {
     width: 100%;
@@ -140,7 +122,7 @@
     background-position: center;
 }
 
-input[type="tel"]{
+input[type="tel"] {
     font-size: 18px;
     // text-align: center;
     border: 1px solid #bdbdbd;
@@ -152,10 +134,10 @@ input[type="tel"]{
     height: 40px;
     padding: 20px;
 }
-.toOrder{
+
+.toOrder {
     display: flex;
     align-items: flex-end;
-
     button {
         width: 200px;
         height: 40px;
@@ -165,7 +147,6 @@ input[type="tel"]{
         border: navajowhite;
         border-radius: 8px;
     }
-
     #orderSumm {
         font-size: 35px;
         margin-top: 20px;

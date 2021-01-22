@@ -19443,6 +19443,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/topproducts.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/topproducts.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/welcome.scss":
 /*!*************************************!*\
   !*** ./resources/sass/welcome.scss ***!
@@ -19466,22 +19477,23 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/wharehouse.scss ./resources/sass/basket.scss ./resources/sass/admin.scss ./resources/sass/header.scss ./resources/sass/supermodal.scss ./resources/sass/shop.scss ./resources/sass/newproduct.scss ./resources/sass/welcome.scss ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/wharehouse.scss ./resources/sass/basket.scss ./resources/sass/admin.scss ./resources/sass/header.scss ./resources/sass/topproducts.scss ./resources/sass/supermodal.scss ./resources/sass/shop.scss ./resources/sass/newproduct.scss ./resources/sass/welcome.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/wharehouse.scss */"./resources/sass/wharehouse.scss");
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/basket.scss */"./resources/sass/basket.scss");
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/admin.scss */"./resources/sass/admin.scss");
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/header.scss */"./resources/sass/header.scss");
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/supermodal.scss */"./resources/sass/supermodal.scss");
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/shop.scss */"./resources/sass/shop.scss");
-__webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/newproduct.scss */"./resources/sass/newproduct.scss");
-module.exports = __webpack_require__(/*! /Users/pavelkatunin/Documents/bells.ikatunin.ru/resources/sass/welcome.scss */"./resources/sass/welcome.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/wharehouse.scss */"./resources/sass/wharehouse.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/basket.scss */"./resources/sass/basket.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/header.scss */"./resources/sass/header.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/topproducts.scss */"./resources/sass/topproducts.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/supermodal.scss */"./resources/sass/supermodal.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/shop.scss */"./resources/sass/shop.scss");
+__webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/newproduct.scss */"./resources/sass/newproduct.scss");
+module.exports = __webpack_require__(/*! /Users/katunin/Documents/bells/resources/sass/welcome.scss */"./resources/sass/welcome.scss");
 
 
 /***/ })

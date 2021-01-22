@@ -1,0 +1,82 @@
+.best-cards-container {
+  display: flex;
+}
+
+.best-cards-container .best-card {
+  width: 200px;
+  height: 300px;
+  background-color: white;
+  border-radius: 8px;
+  margin: 5px;
+  border: 1px solid #bebebe;
+}
+
+.best-cards-container .best-card a {
+  text-decoration: none;
+  color: black;
+}
+
+.best-cards-container .best-card .back-bell {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: -61px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.best-cards-container .best-card .back-bell .name-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 0 20px 30px;
+  font-size: 16px;
+}
+
+.best-cards-container .best-card .back-bell .name-price .name {
+  font-weight: 500;
+}
+
+.best-cards-container .best-card .back-bell .name-price .price {
+  color: #826A5B;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.best-cards-container .best-card .back-bell .weight {
+  margin: 20px 15px 0 0;
+  font-size: 11px;
+  border: 1px solid grey;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1px 8px;
+  border-radius: 10px;
+}
+
+.best-cards-container .best-card .new-top {
+  display: flex;
+  height: 100%;
+  font-size: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.shift-buttons {
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
+}
+
+.shift-buttons button {
+  padding: 2px;
+  width: 30px;
+  margin: 5px;
+}
+

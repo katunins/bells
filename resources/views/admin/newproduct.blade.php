@@ -106,7 +106,7 @@
         @error('images.*')
         <div class="alert">{{ $message }}</div>
         @enderror
-        <input type="file" name="images[]" id="images" multiple>
+        <input type="file" name="images[]" id="images" multiple onchange="document.querySelector('form').submit()">
         @if(!$errors->has('images[]'))
         <label for="images[]">Добавьте фотографии (имя латиницей, img_01.jpg, img_02.jpg)</label>
         @endif

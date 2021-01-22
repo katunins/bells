@@ -1,0 +1,71 @@
+.best-cards-container {
+    display: flex;
+    .best-card {
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        // min-width: calc(var(--one-column)*2 - 5px);
+        // height: calc(var(--one-column)*2*1.5 - 5px);
+        width: 200px;
+        height: 300px;
+        background-color: white;
+        border-radius: 8px;
+        margin: 5px;
+        border: 1px solid rgb(190, 190, 190);
+        .back-bell {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-position-y: -61px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .name-price {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                margin: 0 0 20px 30px;
+                font-size: 16px;
+                .name {
+                    font-weight: 500;
+                }
+                .price {
+                    color: #826A5B;
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+            }
+            .weight {
+                margin: 20px 15px 0 0;
+                font-size: 11px;
+                border: 1px solid grey;
+                height: fit-content;
+                width: fit-content;
+                padding: 1px 8px;
+                border-radius: 10px;
+            }
+        }
+        .new-top {
+            display: flex;
+            height: 100%;
+            font-size: 50px;
+            // font-weight: 100;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.shift-buttons {
+    margin-top: -10px;
+    display: flex;
+    justify-content: center;
+    button {
+        padding: 2px;
+        width: 30px;
+        margin: 5px;
+    }
+}
