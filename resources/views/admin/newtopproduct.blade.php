@@ -1,6 +1,6 @@
 {{-- $topProductEdit --}}
 
-<link rel="stylesheet" href="{{ asset('css/newproduct.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/newproduct.css') }}">
 @extends('admin.app')
 @section('content')
 {{-- @if(Session::has('info'))
