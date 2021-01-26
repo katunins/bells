@@ -73,7 +73,7 @@ class TopProductsController extends Controller
             });
             $image->sharpen(5);
             $image->save();
-            $imagePath = $request->file('image')->store('public/topProducts');
+            $imagePath = $request->file('image')->store('public/topproducts');
             $newData['image'] = str_replace('public/', '/storage/', $imagePath);
         }
 
