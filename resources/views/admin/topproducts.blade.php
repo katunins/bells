@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/topProducts.css">
+<link rel="stylesheet" href="/css/topproducts.css">
 @extends('admin.app')
 @section('content')
 
