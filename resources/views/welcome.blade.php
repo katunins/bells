@@ -12,10 +12,14 @@
 
     <div class="block">
         <div class="flex-vert-center col-6">
-            <div class="utp-block block-to-center col-4">
-                <h1>Подарочный настольный колокол с быстрой доставкой</h1>
-                <p>Литейная мастерская колоколов из натуральной бронзы доставит оригинальный подарок с вашим именем или
-                    ликом святого. Найди свой колокол от 5 990 руб!</p>
+            {{-- <div class="utp-block block-to-center col-4"> --}}
+            <div class="utp-block col-5">
+                {{-- <h1>Подарочный настольный колокол с быстрой доставкой</h1> --}}
+                <h1>Настольный колокол из бронзы от производителя</h1>
+                {{-- <p>Литейная мастерская колоколов из натуральной бронзы доставит оригинальный подарок с вашим именем или
+                    ликом святого. Найди свой колокол от 5 990 руб!</p> --}}
+                <p>Воронежская литейная мастерская реализует оригинальные колокола с вашим именем, молитвой или ликом
+                    святого! Доставка по РФ</p>
                 <button class="todo-button"
                     onclick="document.getElementById('shop').scrollIntoView({block: 'start', behavior: 'smooth'})">
                     Выбрать
@@ -26,12 +30,12 @@
         <div class="col-6 flex-vert-center">
             <div class="col-5 block-to-center">
                 <div><img src="images/big-bell.png" alt=""></div>
-                <div class="flex-horiz-center">
+                {{-- <div class="flex-horiz-center">
                     Оригинальный звук
                     <button class="play-sound-button transparent-button">
                         <img src="images/play-sound.svg" alt="">
                     </button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

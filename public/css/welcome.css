@@ -10,14 +10,17 @@
 
 .utp-block {
   margin-bottom: 50px;
+  margin-left: 50px;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: 400;
 }
 
 p {
-  font-size: 15px;
+  font-size: 17px;
+  font-weight: 200;
 }
 
 .arrow-down {
@@ -37,9 +40,10 @@ p {
   border-radius: 50px;
   color: white;
   margin-top: 31px;
-  font-weight: 600;
+  font-weight: 200;
   text-align: center;
   line-height: 2.3;
+  font-size: 16px;
 }
 
 .play-sound-button {
