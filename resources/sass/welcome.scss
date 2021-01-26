@@ -52,7 +52,7 @@ p {
 }
 
 #best-cards-block {
-    /* width: calc((var(--one-column)*2 - 5px)); */
+    width: calc((var(--one-column)*2 - 5px));
     display: flex;
     flex-direction: row;
     /* justify-content: center; */
