@@ -1,7 +1,7 @@
 
 <div class="header">
-    <div class="logo col-2">
-        <a href="/"><img src="images/logo.svg" alt=""></a>
+    <div class="logo">
+        <a href="/"><img src="images/logo-new.svg" alt=""></a>
     </div>
     <div class="menu-block col-5">
         <?php 

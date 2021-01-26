@@ -12,9 +12,9 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    {{-- <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet"> --}}
     <script src="js/general.js"></script>
 </head>
 
